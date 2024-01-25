@@ -1,6 +1,6 @@
 
 mkdocs==1.5.3
-mkdocs-material==9.5.4
+mkdocs-material==9.5.5
 mkdocs-ezlinked-plugin==0.3.3
 mkdocs-awesome-pages-plugin==2.9.2
 mdx_breakless_lists==1.0.1
@@ -12,7 +12,7 @@ mkdocs-callouts==1.10.0
 mkdocs-custom-tags-attributes==0.3.3
 mkdocs-static-i18n==1.2.0
 mkdocs-meta-descriptions-plugin==3.0.0
-mkdocs-glightbox==0.3.6
+mkdocs-glightbox==0.3.7
 mkdocs-minify-plugin==0.7.2
 mkdocs-exclude==1.0.2
 
