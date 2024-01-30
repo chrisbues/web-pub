@@ -13,7 +13,7 @@ mkdocs-custom-tags-attributes==0.3.3
 mkdocs-static-i18n==1.2.1
 mkdocs-meta-descriptions-plugin==3.0.0
 mkdocs-glightbox==0.3.7
-mkdocs-minify-plugin==0.7.2
+mkdocs-minify-plugin==0.8.0
 mkdocs-exclude==1.0.2
 
 obsidiantools==0.10.0
