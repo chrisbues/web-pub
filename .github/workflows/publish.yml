@@ -1,23 +1,38 @@
 name: Publish docs via GitHub Pages
 
+#on:
+#  push:
+#    branches: [ main ]
+
+#jobs:
+#  build:
+#    name: Deploy docs
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout main
+#        uses: actions/checkout@v2
+#
+#      - uses: actions/setup-python@v2
+#        with:
+#          python-version: 'pypy-3.6'
+
+#      - name: Deploy docs
+#        uses: chrisbues/mkdocs-gh-pages-action@main
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          #GITHUB_DOMAIN: github.myenterprise.com
+
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build:
-    name: Deploy docs
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: 'pypy-3.6'
-
-      - name: Deploy docs
-        uses: chrisbues/mkdocs-gh-pages-action@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          #GITHUB_DOMAIN: github.myenterprise.com
+          python-version: 3.x
+      - run: pip install mkdocs-material 
+      - run: mkdocs gh-deploy --force
