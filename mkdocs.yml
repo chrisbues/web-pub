@@ -61,7 +61,7 @@ plugins:
   - search
   #- material/meta
   - tags
-  - pdf-export
+  - page-to-pdf
 
 extra:
   social:
