@@ -34,6 +34,7 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
-      - run: sudo apt install weasyprint -y
-      - run: pip install mkdocs-material mkdocs-pdf-export-plugin
+      #- run: sudo apt install weasyprint -y
+      #- run: pip install mkdocs-material mkdocs-pdf-export-plugin
+      - run: pip install mkdocs-material mkdocs-page-pdf
       - run: mkdocs gh-deploy --force
