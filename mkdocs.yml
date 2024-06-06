@@ -69,3 +69,6 @@ extra:
       link: https://fosstodon.org/@squidfunk
     - icon: fontawesome/brands/github
       link: https://github.com/chrisbues
+
+extra_css:
+  - style.css
