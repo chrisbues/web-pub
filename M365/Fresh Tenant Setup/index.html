@@ -1,0 +1,2963 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="My digital garden">
+      
+      
+      
+        <link rel="canonical" href="https://www.chrisbues.com/M365/Fresh%20Tenant%20Setup/">
+      
+      
+        <link rel="prev" href="../Defender%20for%20Endpoint%20on%20iOS/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+    
+    
+      
+        <title>Fresh Tenant Setup - Chris Bues</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../style.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#entra-id" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Chris Bues" class="md-header__button md-logo" aria-label="Chris Bues" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Chris Bues
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Fresh Tenant Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome to my Digital Garden
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Azure/Creating%20a%20Basic%20VPN%20Gateway/" class="md-tabs__link">
+          
+  
+    
+  
+  Azure
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  M365
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Chris Bues" class="md-nav__button md-logo" aria-label="Chris Bues" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Chris Bues
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to my Digital Garden
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Azure
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Azure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Azure/Creating%20a%20Basic%20VPN%20Gateway/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating a Basic VPN Gateway
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    M365
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            M365
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Defender%20for%20Endpoint%20on%20iOS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Defender for Endpoint on iOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Fresh Tenant Setup
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Fresh Tenant Setup
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#entra-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entra ID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entra ID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#azure-ad-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure AD Connect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-group-writeback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Group Writeback
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hybrid-cloud-trust" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hybrid Cloud Trust
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entra" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entra
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identity-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identity Protection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identity Protection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#self-service-password-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self Service Password Reset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-feature-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Feature Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Device Settings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Device Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cloud-laps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud LAPS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enterprise-state-roaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enterprise State Roaming
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identity-protection_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identity Protection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identity Protection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multifactor-authentication-registration-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multifactor authentication registration policy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnostic Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-secure-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Global Secure Access
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Global Secure Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#internet-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Internet Access
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intune" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intune
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Intune">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tenant-administration-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tenant Administration Settings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tenant Administration Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defender-for-endpoint-connector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defender for Endpoint Connector
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Devices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Devices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-automatic-enrollment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows Automatic Enrollment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-autopilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows Autopilot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ios-enrollment" class="md-nav__link">
+    <span class="md-ellipsis">
+      iOS Enrollment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="iOS Enrollment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-apple-mdm-push-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Apple MDM Push Certificate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enrollment-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enrollment Profile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supervised-ios-enrollment-with-apple-configurator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supervised iOS Enrollment with Apple Configurator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#android-enrollment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Android Enrollment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Android Enrollment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managed-google-play-account-linking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managed Google Play Account Linking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applications
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Applications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint security
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoint security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      MacOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-baselines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Baselines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Account Protection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m365-defender" class="md-nav__link">
+    <span class="md-ellipsis">
+      M365 Defender
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="M365 Defender">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#email-collaboration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Email &amp; collaboration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mdca" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDCA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MDCA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    <span class="md-ellipsis">
+      System
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preview-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preview Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip-address-ranges" class="md-nav__link">
+    <span class="md-ellipsis">
+      IP address Ranges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud Discovery
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cloud Discovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defender-for-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defender for Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-enrichment" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Enrichment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#information-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Information Protection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Information Protection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#microsoft-information-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microsoft Information Protection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app-governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      App governance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="App governance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Status
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connected-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connected Apps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connected Apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#app-connectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      App Connectors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#siem-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      SIEM Agents
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MDE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defender-for-identity-mdi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defender for Identity (MDI)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Defender for Identity (MDI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      General
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sensors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ad-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      AD Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microsoft-purview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microsoft Purview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Microsoft Purview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#device-onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Device Onboarding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitivity-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensitivity Labels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sensitivity Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-labeling-for-protected-content-pdfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable labeling for Protected content &amp; PDFs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-labeling-for-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Labeling for Containers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-co-authoring-for-encrypted-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable co-authoring for Encrypted Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      DLP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DLP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-dlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint DLP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoint DLP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Settings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mip-scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      MIP Scanner
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MIP Scanner">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exact-data-match" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exact Data Match
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exact Data Match">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edm-sit" class="md-nav__link">
+    <span class="md-ellipsis">
+      EDM SIT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edm-uploader-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      EDM Uploader Tool
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insider-risk-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insider Risk Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Insider Risk Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browser-activity-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Browser Activity Plugins
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Settings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-indicators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy Indicators
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analytics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Polices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#entra-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entra ID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entra ID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#azure-ad-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure AD Connect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-group-writeback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Group Writeback
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hybrid-cloud-trust" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hybrid Cloud Trust
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entra" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entra
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identity-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identity Protection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identity Protection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#self-service-password-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self Service Password Reset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-feature-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Feature Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Device Settings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Device Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cloud-laps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud LAPS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enterprise-state-roaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enterprise State Roaming
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identity-protection_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identity Protection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identity Protection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multifactor-authentication-registration-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multifactor authentication registration policy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnostic Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-secure-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Global Secure Access
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Global Secure Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#internet-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Internet Access
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intune" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intune
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Intune">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tenant-administration-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tenant Administration Settings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tenant Administration Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defender-for-endpoint-connector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defender for Endpoint Connector
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Devices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Devices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-automatic-enrollment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows Automatic Enrollment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-autopilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows Autopilot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ios-enrollment" class="md-nav__link">
+    <span class="md-ellipsis">
+      iOS Enrollment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="iOS Enrollment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-apple-mdm-push-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Apple MDM Push Certificate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enrollment-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enrollment Profile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supervised-ios-enrollment-with-apple-configurator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supervised iOS Enrollment with Apple Configurator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#android-enrollment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Android Enrollment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Android Enrollment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managed-google-play-account-linking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managed Google Play Account Linking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applications
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Applications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint security
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoint security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      MacOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-baselines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Baselines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Account Protection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m365-defender" class="md-nav__link">
+    <span class="md-ellipsis">
+      M365 Defender
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="M365 Defender">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#email-collaboration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Email &amp; collaboration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mdca" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDCA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MDCA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    <span class="md-ellipsis">
+      System
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preview-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preview Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip-address-ranges" class="md-nav__link">
+    <span class="md-ellipsis">
+      IP address Ranges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud Discovery
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cloud Discovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defender-for-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defender for Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-enrichment" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Enrichment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#information-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Information Protection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Information Protection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#microsoft-information-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microsoft Information Protection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app-governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      App governance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="App governance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Status
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connected-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connected Apps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connected Apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#app-connectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      App Connectors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#siem-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      SIEM Agents
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MDE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defender-for-identity-mdi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defender for Identity (MDI)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Defender for Identity (MDI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      General
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sensors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ad-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      AD Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microsoft-purview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microsoft Purview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Microsoft Purview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#device-onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Device Onboarding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitivity-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensitivity Labels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sensitivity Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-labeling-for-protected-content-pdfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable labeling for Protected content &amp; PDFs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-labeling-for-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Labeling for Containers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-co-authoring-for-encrypted-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable co-authoring for Encrypted Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      DLP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DLP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-dlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint DLP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoint DLP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Settings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mip-scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      MIP Scanner
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MIP Scanner">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exact-data-match" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exact Data Match
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exact Data Match">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edm-sit" class="md-nav__link">
+    <span class="md-ellipsis">
+      EDM SIT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edm-uploader-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      EDM Uploader Tool
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insider-risk-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insider Risk Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Insider Risk Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browser-activity-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Browser Activity Plugins
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Settings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-indicators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy Indicators
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analytics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Polices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset"><a class="md-content__button md-icon" download href="Fresh Tenant Setup.pdf" title="PDF"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 10.5h1v3h-1v-3m-5 1h1v-1H7v1M20 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2M9.5 10.5A1.5 1.5 0 0 0 8 9H5.5v6H7v-2h1a1.5 1.5 0 0 0 1.5-1.5v-1m5 0A1.5 1.5 0 0 0 13 9h-2.5v6H13a1.5 1.5 0 0 0 1.5-1.5v-3m4-1.5h-3v6H17v-2h1.5v-1.5H17v-1h1.5V9z"></path></svg></a>
+                
+                  
+  
+<nav class="md-tags" >
+  
+    
+    
+    
+      <span class="md-tag">M365</span>
+    
+  
+</nav>
+
+
+
+  <h1>Fresh Tenant Setup</h1>
+
+<p>These are the steps I typically take to set up a fresh M365 E5 tenant. This is not complete. I'm documenting this (finally) as I rebuild a new test tenant.</p>
+<h2 id="entra-id">Entra ID<a class="headerlink" href="#entra-id" title="Permanent link">&para;</a></h2>
+<h3 id="azure-ad-connect">Azure AD Connect<a class="headerlink" href="#azure-ad-connect" title="Permanent link">&para;</a></h3>
+<p>Assuming you already have a Lab Domain Controller and Server for AAD Connect.</p>
+<p>Install AAD Connect, use Express Settings
+<img alt="aad_connect_1" src="../elements/aad_connect_1.png" /></p>
+<p>After it is finished, re-run and enable Hybrid Join</p>
+<p><img alt="aad_connect_2" src="../elements/aad_connect_2.png" />
+<img alt="aad_connect_3" src="../elements/aad_connect_3.png" /></p>
+<h3 id="enable-group-writeback">Enable Group Writeback<a class="headerlink" href="#enable-group-writeback" title="Permanent link">&para;</a></h3>
+<p><a href="https://learn.microsoft.com/en-us/azure/active-directory/hybrid/connect/how-to-connect-group-writeback-enable"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<p>On the AzureAD Connect server, run the following commands to enable Group Writeback in Windows PowerShell
+<div class="language-PowerShell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">Set-ADSyncScheduler</span> <span class="n">-SyncCycleEnabled</span> <span class="nv">$false</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">Set-ADSyncAADCompanyFeature</span> <span class="n">-GroupWritebackV2</span> <span class="nv">$true</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">Set-ADSyncScheduler</span> <span class="n">-SyncCycleEnabled</span> <span class="nv">$true</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">Start-ADSyncSyncCycle</span> <span class="n">-PolicyType</span> <span class="n">Initial</span>
+</span></code></pre></div></p>
+<h3 id="hybrid-cloud-trust">Hybrid Cloud Trust<a class="headerlink" href="#hybrid-cloud-trust" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-authentication-passwordless-security-key-on-premises#example-4-prompt-for-cloud-credentials-using-modern-authentication"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<p>Create EntraID Kerberos Server</p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c"># Specify the on-premises Active Directory domain. A new Azure AD</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c"># Kerberos Server object will be created in this Active Directory domain.</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">$domain</span> <span class="p">=</span> <span class="s2">&quot;contoso.com&quot;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c"># Enter a UPN of an Azure Active Directory global administrator</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nv">$userPrincipalName</span> <span class="p">=</span> <span class="s2">&quot;admin@contoso.com&quot;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c"># Enter a domain administrator username and password.</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="nv">$domainCred</span> <span class="p">=</span> <span class="nb">Get-Credential</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c"># Create the new Azure AD Kerberos Server object in Active Directory</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c"># and then publish it to Azure Active Directory.</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c"># Open an interactive sign-in prompt with given username to access the Azure AD.</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nb">Set-AzureADKerberosServer</span> <span class="n">-Domain</span> <span class="nv">$domain</span> <span class="n">-UserPrincipalName</span> <span class="nv">$userPrincipalName</span> <span class="n">-DomainCredential</span> <span class="nv">$domainCred</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c"># Verify server</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="nb">Get-AzureADKerberosServer</span> <span class="n">-Domain</span> <span class="nv">$domain</span> <span class="n">-DomainCredential</span> <span class="nv">$domainCred</span> <span class="n">-UserPrincipalName</span> <span class="nv">$userPrincipalName</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">Id</span>                 <span class="p">:</span> <span class="n">17530</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="n">UserAccount</span>        <span class="p">:</span> <span class="n">CN</span><span class="p">=</span><span class="n">krbtgt_AzureAD</span><span class="p">,</span><span class="n">CN</span><span class="p">=</span><span class="n">Users</span><span class="p">,</span><span class="n">DC</span><span class="p">=</span><span class="n">contoso</span><span class="p">,</span><span class="n">DC</span><span class="p">=</span><span class="n">com</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="n">ComputerAccount</span>    <span class="p">:</span> <span class="n">CN</span><span class="p">=</span><span class="n">AzureADKerberos</span><span class="p">,</span><span class="n">OU</span><span class="p">=</span><span class="n">Domain</span> <span class="n">Controllers</span><span class="p">,</span><span class="n">DC</span><span class="p">=</span><span class="n">contoso</span><span class="p">,</span><span class="n">DC</span><span class="p">=</span><span class="n">com</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="n">DisplayName</span>        <span class="p">:</span> <span class="n">krbtgt_17530</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="n">DomainDnsName</span>      <span class="p">:</span> <span class="n">contoso</span><span class="p">.</span><span class="n">com</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="n">KeyVersion</span>         <span class="p">:</span> <span class="n">27591</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="n">KeyUpdatedOn</span>       <span class="p">:</span> <span class="n">10</span><span class="p">/</span><span class="n">13</span><span class="p">/</span><span class="n">2022</span> <span class="n">9</span><span class="p">:</span><span class="n">23</span><span class="p">:</span><span class="n">43</span> <span class="n">PM</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="n">KeyUpdatedFrom</span>     <span class="p">:</span> <span class="n">CONTOSO-DC</span><span class="p">-</span><span class="n">01</span><span class="p">.</span><span class="n">contoso</span><span class="p">.</span><span class="n">com</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="n">CloudDisplayName</span>   <span class="p">:</span> <span class="n">krbtgt_17530</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="n">CloudDomainDnsName</span> <span class="p">:</span> <span class="n">contoso</span><span class="p">.</span><span class="n">com</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="n">CloudId</span>            <span class="p">:</span> <span class="n">17530</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="n">CloudKeyVersion</span>    <span class="p">:</span> <span class="n">27591</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="n">CloudKeyUpdatedOn</span>  <span class="p">:</span> <span class="n">10</span><span class="p">/</span><span class="n">13</span><span class="p">/</span><span class="n">2022</span> <span class="n">9</span><span class="p">:</span><span class="n">23</span><span class="p">:</span><span class="n">43</span> <span class="n">PM</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="n">CloudTrustDisplay</span>  <span class="p">:</span>
+</span></code></pre></div>
+<h2 id="entra">Entra<a class="headerlink" href="#entra" title="Permanent link">&para;</a></h2>
+<h3 id="identity-protection">Identity Protection<a class="headerlink" href="#identity-protection" title="Permanent link">&para;</a></h3>
+<h4 id="self-service-password-reset">Self Service Password Reset<a class="headerlink" href="#self-service-password-reset" title="Permanent link">&para;</a></h4>
+<p>[<img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal]<br />
+<a href="https://learn.microsoft.com/en-us/entra/identity/authentication/howto-sspr-deployment"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<ul>
+<li>Enable Self service password reset<ul>
+<li>Target a group that excludes service accounts. </li>
+</ul>
+</li>
+</ul>
+<h4 id="authentication-methods">Authentication Methods<a class="headerlink" href="#authentication-methods" title="Permanent link">&para;</a></h4>
+<p><a href="https://entra.microsoft.com/#view/Microsoft_AAD_IAM/AuthenticationMethodsMenuBlade/~/AdminAuthMethods"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a><br />
+<a href="https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<ul>
+<li>Enable FIDO2, Authenticator, Temporary Access Pass in Authentication Methods</li>
+<li>Disable verification options in the <a href="https://account.activedirectory.windowsazure.com/usermanagement/mfasettings.aspx">legacy MFA settings portal</a>
+  <img alt="entra_legacy_mfa" src="../elements/entra_legacy_mfa.png" /></li>
+<li>Disable Authentication methods in <a href="https://entra.microsoft.com/#view/Microsoft_AAD_IAM/PasswordResetMenuBlade/~/AuthenticationMethods/fromNav/Identity">SSPR Authentication Methods</a>
+  <img alt="entra_sspr_auth_methods" src="../elements/entra_sspr_auth_methods.png" /></li>
+<li>Migrate to the <a href="https://entra.microsoft.com/#view/Microsoft_AAD_IAM/AuthenticationMethodsMenuBlade/~/AdminAuthMethods">Converged Authentication Methods Policy</a>
+  <img alt="entra_auth_meothd_migration" src="../elements/entra_auth_meothd_migration.png" /> </li>
+</ul>
+<h3 id="user-settings">User Settings<a class="headerlink" href="#user-settings" title="Permanent link">&para;</a></h3>
+<p><a href="https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/UserSettings/menuId/"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a></p>
+<ul>
+<li>Toggle Off<ul>
+<li>Users can register Applications</li>
+<li>Show keep user signed in</li>
+</ul>
+</li>
+<li>Toggle On<ul>
+<li>Restrict non-admin users from creating tenants</li>
+<li>Restrict access to Entra ID administration portal
+<img alt="entraid_user_settings" src="../elements/entraid_user_settings.png" /></li>
+</ul>
+</li>
+</ul>
+<h3 id="user-feature-settings">User Feature Settings<a class="headerlink" href="#user-feature-settings" title="Permanent link">&para;</a></h3>
+<p><a href="https://entra.microsoft.com/#view/Microsoft_AAD_IAM/FeatureSettingsBlade"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a></p>
+<ul>
+<li>Select All for Users can use preview features for My Apps</li>
+</ul>
+<h3 id="device-settings">Device Settings<a class="headerlink" href="#device-settings" title="Permanent link">&para;</a></h3>
+<h4 id="cloud-laps">Cloud LAPS<a class="headerlink" href="#cloud-laps" title="Permanent link">&para;</a></h4>
+<p><a href="https://portal.azure.com/#view/Microsoft_AAD_Devices/DevicesMenuBlade/~/DeviceSettings/menuId~/null"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a><br />
+<a href="https://learn.microsoft.com/en-us/mem/intune/protect/windows-laps-overview"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<ul>
+<li>Enable LAPS
+  <img alt="entra_device_laps" src="../elements/entra_device_laps.png" /></li>
+</ul>
+<h4 id="enterprise-state-roaming">Enterprise State Roaming<a class="headerlink" href="#enterprise-state-roaming" title="Permanent link">&para;</a></h4>
+<p><a href="https://portal.azure.com/#view/Microsoft_AAD_Devices/DevicesMenuBlade/~/RoamingSettings/menuId~/null"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a></p>
+<ul>
+<li>Enable Enterprise State Roaming
+  <img alt="" src="../elements/entra_devices_esr.png" /></li>
+</ul>
+<h3 id="identity-protection_1">Identity Protection<a class="headerlink" href="#identity-protection_1" title="Permanent link">&para;</a></h3>
+<h4 id="multifactor-authentication-registration-policy">Multifactor authentication registration policy<a class="headerlink" href="#multifactor-authentication-registration-policy" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Create a AAD group called Service Accounts, add the AzureAD Connect sync account</li>
+<li>Enable the policy, targeting all users and excluding </li>
+</ul>
+<h3 id="diagnostic-settings">Diagnostic Settings<a class="headerlink" href="#diagnostic-settings" title="Permanent link">&para;</a></h3>
+<p><a href="https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/DiagnosticSettings"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a><br />
+<a href="https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<ul>
+<li>Enable all diagnostic settings to log to your Sentinel's log analytics workspace
+  <img alt="" src="../elements/entra_diag_setings.png" /></li>
+</ul>
+<h3 id="global-secure-access">Global Secure Access<a class="headerlink" href="#global-secure-access" title="Permanent link">&para;</a></h3>
+<p><a href="https://entra.microsoft.com/#view/Microsoft_Azure_Network_Access/Welcome.ReactView"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a><br />
+<a href="https://learn.microsoft.com/en-us/entra/global-secure-access/"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<h4 id="internet-access">Internet Access<a class="headerlink" href="#internet-access" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Enable the <a href="https://entra.microsoft.com/#view/Microsoft_Azure_Network_Access/ForwardingProfile.ReactView">M365 Profile</a>
+   <img alt="" src="../elements/entra_gsa_365_profile.png" /></li>
+<li>Download the <a href="https://entra.microsoft.com/#view/Microsoft_Azure_Network_Access/Clients.ReactView">GSA Client</a> and deploy to Windows devices.</li>
+</ol>
+<h2 id="intune">Intune<a class="headerlink" href="#intune" title="Permanent link">&para;</a></h2>
+<h3 id="tenant-administration-settings">Tenant Administration Settings<a class="headerlink" href="#tenant-administration-settings" title="Permanent link">&para;</a></h3>
+<h4 id="defender-for-endpoint-connector">Defender for Endpoint Connector<a class="headerlink" href="#defender-for-endpoint-connector" title="Permanent link">&para;</a></h4>
+<p><a href="https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/TenantAdminConnectorsMenu/~/windowsDefenderATP"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a></p>
+<ul>
+<li>Enable compliance policy evaluation for all platforms</li>
+<li>Enable app sync</li>
+<li>Enable App protection policy evaluation
+<img alt="" src="../elements/intune_mde_connector.png" /></li>
+</ul>
+<h3 id="devices">Devices<a class="headerlink" href="#devices" title="Permanent link">&para;</a></h3>
+<h4 id="windows-automatic-enrollment">Windows Automatic Enrollment<a class="headerlink" href="#windows-automatic-enrollment" title="Permanent link">&para;</a></h4>
+<p><a href="https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesWindowsMenu/~/windowsEnrollment"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a></p>
+<ul>
+<li>Set MDM and MAM user scopes to all
+  <img alt="intune_auto_enrollment" src="../elements/intune_auto_enrollment.png" /></li>
+</ul>
+<h4 id="windows-autopilot">Windows Autopilot<a class="headerlink" href="#windows-autopilot" title="Permanent link">&para;</a></h4>
+<p><a href="https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/AutopilotDeploymentProfiles.ReactView"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a></p>
+<ul>
+<li>Create a new Autopilot deployment profile
+  <img alt="intune_autopilot_profile" src="../elements/intune_autopilot_profile.png" /><img alt="intune_autopilot_profile_1" src="../elements/intune_autopilot_profile_1.png" /></li>
+</ul>
+<h4 id="ios-enrollment">iOS Enrollment<a class="headerlink" href="#ios-enrollment" title="Permanent link">&para;</a></h4>
+<p><a href="https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesIosMenu/~/iosEnrollment"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a></p>
+<p>User-driven iOS enrollment is a two step process - the push certificate and the enrollment profile.</p>
+<h5 id="configure-apple-mdm-push-certificate">Configure Apple MDM Push Certificate<a class="headerlink" href="#configure-apple-mdm-push-certificate" title="Permanent link">&para;</a></h5>
+<p><a href="https://learn.microsoft.com/en-us/mem/intune/enrollment/apple-mdm-push-certificate-get"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<p><img alt="" src="../elements/intune_apple_mdm_cert.png" /></p>
+<h5 id="enrollment-profile">Enrollment Profile<a class="headerlink" href="#enrollment-profile" title="Permanent link">&para;</a></h5>
+<p><a href="https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/UserInitiatedEnrollmentProfilesListBlade"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a></p>
+<ul>
+<li>Configure an enrollment profile<ul>
+<li>Create a profile that allows user choice of type of device (corporate vs user), target all users.
+<img alt="" src="../elements/intune_apple_enrollment_profile.png" /></li>
+</ul>
+</li>
+</ul>
+<h5 id="supervised-ios-enrollment-with-apple-configurator">Supervised iOS Enrollment with Apple Configurator<a class="headerlink" href="#supervised-ios-enrollment-with-apple-configurator" title="Permanent link">&para;</a></h5>
+<p><a href="https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/AppleConfiguratorMenuBlade/~/profiles"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a><br />
+<a href="https://learn.microsoft.com/en-us/mem/intune/enrollment/apple-configurator-enroll-ios"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a>
+There are two options for Apple Config profile - with user affinity and without. For testing, enrollment with User Affinity with the Company Portal app mimics how devices might be distributed to end users.
+1. Create a new Enrollment Profile. On the settings step, select:
+   User affinity: <code>Enroll with User Affinity</code>
+   Select where users must authenticate: <code>Company Portal</code>
+2. Export the profile you just created. Copy the URL.
+   <img alt="" src="../elements/intune_apple_config_export_profile.png" />
+3. Create a csv file with the serial numbers of iPads you wish to enroll.
+   <code>Serial number,device details</code>
+4. Upload the csv file in the portal under <a href="https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/AppleConfiguratorMenuBlade/~/devices">Devices</a>. Assign the profile you just created.
+   <img alt="" src="../elements/intune_apple_config_add_devices.png" />
+5. In Apple Configurator, choose Settings -&gt; Servers. Click + to add a server. Add the URL you copied from step 2.
+   <img alt="" src="../elements/apple_config_add_server.png" />
+6. Connect a device, and at the main screen, click Prepare. Leave the default options unchanged.
+   <img alt="" src="../elements/apple_config_prepare_1.png" />
+7. Choose the Intune MDM server defined in Step 5.
+   <img alt="" src="../elements/apple_config_prepare_2.png" />
+8. Skip Apple Business Manager sign-in if prompted. At the Organization screen select a previous org or create a new one. This is shown in the settings app in iOS.
+9. Choose to generate a new supervision Identity or reuse an existing one.
+10. Choose which steps to display in the Setup Assistant. Click Prepare to start the process.</p>
+<h4 id="android-enrollment">Android Enrollment<a class="headerlink" href="#android-enrollment" title="Permanent link">&para;</a></h4>
+<p><a href="https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesAndroidMenu/~/androidEnrollment"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" />Portal</a><br />
+<a href="https://learn.microsoft.com/en-us/mem/intune/fundamentals/deployment-guide-enrollment-android#enable-enrollment-of-android-for-work-devices"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" />Docs</a></p>
+<p>User-driven Android enrollment is a two step process - the managed Google Play account linking  and the enrollment profile.</p>
+<h5 id="managed-google-play-account-linking">Managed Google Play Account Linking<a class="headerlink" href="#managed-google-play-account-linking" title="Permanent link">&para;</a></h5>
+<p><img alt="" src="../elements/intune_android_linking.png" /></p>
+<h3 id="applications">Applications<a class="headerlink" href="#applications" title="Permanent link">&para;</a></h3>
+<p><a href="https://endpoint.microsoft.com/#view/Microsoft_Intune_DeviceSettings/AppsMenu/~/overview"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" />Portal</a><br />
+<a href="https://learn.microsoft.com/en-us/mem/intune/apps/apps-add"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<h4 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h4>
+<p>Add app -&gt; Microsoft 365 Apps for Windows 10 and Later. Assign to all devices.</p>
+<p><img alt="intune_windows_m365_apps" src="../elements/intune_windows_m365_apps.png" />
+<img alt="intune_windows_m365_apps_1" src="../elements/intune_windows_m365_apps_1.png" /></p>
+<h3 id="endpoint-security">Endpoint security<a class="headerlink" href="#endpoint-security" title="Permanent link">&para;</a></h3>
+<p><a href="https://endpoint.microsoft.com/#view/Microsoft_Intune_Workflows/SecurityManagementMenu/~/overview"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" />Portal</a></p>
+<h5 id="windows_1">Windows<a class="headerlink" href="#windows_1" title="Permanent link">&para;</a></h5>
+<p>Under Endpoint Detection and Response, create a new policy targeting Windows 10,11 and Server. Target all devices.</p>
+<p><img alt="intune_edr_profile" src="../elements/intune_edr_profile.png" /></p>
+<p><img alt="intune_edr_profile_1" src="../elements/intune_edr_profile_1.png" /></p>
+<h4 id="macos">MacOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h4>
+<p>Deploying MDE on MacOS is a multi-step manual process, and changes occasionally. Refer to <a href="https://learn.microsoft.com/en-us/defender-endpoint/mac-install-with-intune">Intune-based deployment for Microsoft Defender for Endpoint on Mac - Microsoft Defender for Endpoint | Microsoft Learn</a> for the most current steps.</p>
+<p>The config files for MDE on Mac and Linux are in <a href="https://github.com/microsoft/mdatp-xplat/tree/master">this GitHub repo</a>.</p>
+<ol>
+<li>Approve system extensions</li>
+<li>Deploy the <a href="https://github.com/microsoft/mdatp-xplat/blob/master/macos/mobileconfig/combined/mdatp.mobileconfig">combined mobileconfig file from the repo</a> to simplify policies.</li>
+<li>Deploy the <a href="https://github.com/microsoft/mdatp-xplat/blob/master/macos/settings/microsoft_auto_update/com.microsoft.autoupdate2.mobileconfig">Microsoft AutoUpdate config file from the repo</a></li>
+<li>Deploy the <a href="https://github.com/microsoft/mdatp-xplat/blob/master/macos/settings/data_loss_prevention/com.microsoft.wdav.mobileconfig">MDE Preferences config file from the repo</a> to enable Endpoint DLP.</li>
+<li>Deploy the <a href="https://learn.microsoft.com/en-us/defender-endpoint/mac-install-with-intune#step-14-publish-application">Defender App via Intune</a></li>
+<li>Deploy the <a href="https://learn.microsoft.com/en-us/defender-endpoint/mac-install-with-intune#step-15-download-the-onboarding-package">MDE onboarding package</a></li>
+</ol>
+<h4 id="security-baselines"><a href="https://endpoint.microsoft.com/#view/Microsoft_Intune_Workflows/SecurityManagementMenu/~/securityBaselines">Security Baselines</a><a class="headerlink" href="#security-baselines" title="Permanent link">&para;</a></h4>
+<p>Create a new Microsoft Defender for Endpoint Baseline policy and target all devices.</p>
+<p><img alt="intune_security_baselines" src="../elements/intune_security_baselines.png" /></p>
+<h4 id="account-protection"><a href="https://endpoint.microsoft.com/#view/Microsoft_Intune_Workflows/SecurityManagementMenu/~/accountprotection">Account Protection</a><a class="headerlink" href="#account-protection" title="Permanent link">&para;</a></h4>
+<p>After enabling LAPS in Entra, create a Windows LAPS profile and apply to all devices.
+<img alt="intune_laps_profile" src="../elements/intune_laps_profile.png" /></p>
+<p><img alt="intune_laps_profile1" src="../elements/intune_laps_profile1.png" /></p>
+<h2 id="m365-defender"><a href="https://security.microsoft.com/">M365 Defender</a><a class="headerlink" href="#m365-defender" title="Permanent link">&para;</a></h2>
+<h3 id="email-collaboration">Email &amp; collaboration<a class="headerlink" href="#email-collaboration" title="Permanent link">&para;</a></h3>
+<p><a href="https://security.microsoft.com/presetSecurityPolicies">Policies &amp; Rules -&gt; Threat Policies -&gt; Preset Security Configurations</a></p>
+<p>Enable Standard Protection Preset Policies.
+<img alt="mdo_protection_policies" src="../elements/mdo_protection_policies.png" /></p>
+<p><img alt="mdo_protection_policies_exo" src="../elements/mdo_protection_policies_exo.png" /></p>
+<p><img alt="mdo_protection_policies_m365" src="../elements/mdo_protection_policies_m365.png" /></p>
+<h3 id="mdca">MDCA<a class="headerlink" href="#mdca" title="Permanent link">&para;</a></h3>
+<p>In the Defender Portal, go to <a href="https://security.microsoft.com/cloudapps/settings?tabid=about">Settings -&gt; Cloud Apps</a></p>
+<h4 id="system">System<a class="headerlink" href="#system" title="Permanent link">&para;</a></h4>
+<h5 id="preview-features"><a href="https://security.microsoft.com/cloudapps/settings?tabid=previewFeatures">Preview Features</a><a class="headerlink" href="#preview-features" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Toggle Enable</li>
+</ul>
+<h5 id="ip-address-ranges"><a href="https://security.microsoft.com/cloudapps/settings?tabid=ipRanges">IP address Ranges</a><a class="headerlink" href="#ip-address-ranges" title="Permanent link">&para;</a></h5>
+<ul>
+<li>If you have IP Ranges as Trusted Named Locations in EID, add them as Custom IP Address Ranges in MDCA with the category of Corporate
+  <img alt="mdca_ip_address_range" src="../elements/mdca_ip_address_range.png" /></li>
+</ul>
+<h4 id="cloud-discovery">Cloud Discovery<a class="headerlink" href="#cloud-discovery" title="Permanent link">&para;</a></h4>
+<h5 id="defender-for-endpoint"><a href="https://security.microsoft.com/cloudapps/settings?tabid=app-control">Defender for Endpoint</a><a class="headerlink" href="#defender-for-endpoint" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Enforce App Access with Defender for Endpoint
+  <img alt="mdca_mde" src="../elements/mdca_mde.png" /></li>
+</ul>
+<h5 id="user-enrichment"><a href="https://security.microsoft.com/cloudapps/settings?tabid=discovery-userEnrichment">User Enrichment</a><a class="headerlink" href="#user-enrichment" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Enable User Enrichment   <img alt="mdca_user_enrichment" src="../elements/mdca_user_enrichment.png" /></li>
+</ul>
+<h4 id="information-protection">Information Protection<a class="headerlink" href="#information-protection" title="Permanent link">&para;</a></h4>
+<h5 id="microsoft-information-protection"><a href="https://security.microsoft.com/cloudapps/settings?tabid=security">Microsoft Information Protection</a><a class="headerlink" href="#microsoft-information-protection" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Enable automatically scan new files</li>
+<li>Enable scanning protected files. You'll need to go through the OAUTH grant process.
+  <img alt="mdca_mip" src="../elements/mdca_mip.png" /></li>
+</ul>
+<h5 id="files"><a href="https://security.microsoft.com/cloudapps/settings?tabid=files">Files</a><a class="headerlink" href="#files" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Enable file monitoring
+  <img alt="mdca_files" src="../elements/mdca_files.png" /></li>
+</ul>
+<h4 id="app-governance">App governance<a class="headerlink" href="#app-governance" title="Permanent link">&para;</a></h4>
+<h5 id="service-status"><a href="https://security.microsoft.com/cloudapps/settings?tabid=activateAppG">Service Status</a><a class="headerlink" href="#service-status" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Turn on app governance
+  <img alt="mdca_enable_app_gov" src="../elements/mdca_enable_app_gov.png" /></li>
+</ul>
+<h4 id="connected-apps">Connected Apps<a class="headerlink" href="#connected-apps" title="Permanent link">&para;</a></h4>
+<h5 id="app-connectors"><a href="https://security.microsoft.com/cloudapps/settings?tabid=appConnectors">App Connectors</a><a class="headerlink" href="#app-connectors" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Hit Connect an app, choose Microsoft 365 from the list. Select all options.</li>
+</ul>
+<p><img alt="mdca_app_connectors_m365" src="../elements/mdca_app_connectors_m365.png" /></p>
+<h4 id="siem-agents"><a href="https://security.microsoft.com/cloudapps/settings?tabid=siemAgents">SIEM Agents</a><a class="headerlink" href="#siem-agents" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Add the Azure Sentinel integration
+<img alt="" src="../elements/mdca_siem_agents.png" />
+<img alt="" src="../elements/mdca_siem_agents_sentinel_1.png" /></li>
+</ul>
+<h3 id="mde">MDE<a class="headerlink" href="#mde" title="Permanent link">&para;</a></h3>
+<p>In the Defender Portal, go to <a href="https://security.microsoft.com/securitysettings/endpoints/integration">Settings -&gt; Endpoints</a></p>
+<h4 id="advanced-features">Advanced Features<a class="headerlink" href="#advanced-features" title="Permanent link">&para;</a></h4>
+<p>Set the features configured below</p>
+<p><img alt="mde_advanced_features" src="../elements/mde_advanced_features.png" /></p>
+<h3 id="defender-for-identity-mdi">Defender for Identity (MDI)<a class="headerlink" href="#defender-for-identity-mdi" title="Permanent link">&para;</a></h3>
+<h4 id="general">General<a class="headerlink" href="#general" title="Permanent link">&para;</a></h4>
+<p>In the Defender Portal, go to <a href="https://security.microsoft.com/settings/identities">Settings -&gt; Identities</a></p>
+<h5 id="sensors">Sensors<a class="headerlink" href="#sensors" title="Permanent link">&para;</a></h5>
+<p>Click +Add Sensor, and download the installer and copy the Access key
+<img alt="mdi_add_new_sensor" src="../elements/mdi_add_new_sensor.png" /></p>
+<p>Install the sensor on all DCs in AD. Use the access key when prompted by the installer.
+<img alt="mdi_sensor_install" src="../elements/mdi_sensor_install.png" /></p>
+<p>After installing, configure the Active Directory requirements listed below.</p>
+<h4 id="ad-configuration">AD Configuration<a class="headerlink" href="#ad-configuration" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/defender-for-identity/configure-windows-event-collection">Configure Event Collection via GPO</a></li>
+<li>Configure Group Managed Service Account account<ul>
+<li>On the first DC<ul>
+<li>Create root KDS key
+  <code>powershell
+ Add-KdsRootKey -EffectiveTime ((get-date).addhours(-10))</code></li>
+<li>Purge kerberos tickets
+  <code>powershell
+  klist purge -li 0x3e7</code></li>
+<li>Create the gMSA
+  ``` powershell
+ New-ADServiceAccount accountname -PrincipalsAllowedToRetrieveManagedPassword "Domain Controllers" -DNSHostName accountname.domain.contoso.com
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>        - Install the gMSA on the DC
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>          ``` powershell
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>          Install-ADServiceAccount -Identity &#39;accountname&#39;
+</span></code></pre></div></li>
+</ul>
+</li>
+<li>On the other DCs, purge kerberos tickets and install the service account</li>
+<li>Add the gMSA in the portal
+  <img alt="Adding a gMSA account" src="elements/mdi_gmsa_account.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="microsoft-purview">Microsoft Purview<a class="headerlink" href="#microsoft-purview" title="Permanent link">&para;</a></h2>
+<h3 id="device-onboarding">Device Onboarding<a class="headerlink" href="#device-onboarding" title="Permanent link">&para;</a></h3>
+<p><a href="https://learn.microsoft.com/en-us/purview/device-onboarding-overview"><img alt="📖" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d6.svg" title=":book:" />Windows</a><br />
+<a href="https://learn.microsoft.com/en-us/purview/device-onboarding-macos-overview"><img alt="📖" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d6.svg" title=":book:" />Mac</a><br />
+<a href="https://compliance.microsoft.com/compliancesettings/deviceonboarding"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /></a></p>
+<ol>
+<li>Enable Windows and Mac device onboarding. This requires MDE.</li>
+</ol>
+<h3 id="sensitivity-labels">Sensitivity Labels<a class="headerlink" href="#sensitivity-labels" title="Permanent link">&para;</a></h3>
+<h4 id="enable-labeling-for-protected-content-pdfs">Enable labeling for Protected content &amp; PDFs<a class="headerlink" href="#enable-labeling-for-protected-content-pdfs" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/purview/sensitivity-labels-sharepoint-onedrive-files#use-the-microsoft-purview-compliance-portal-to-enable-support-for-sensitivity-labels">Enable Sensitivity Labels for Protected Content</a></li>
+<li><a href="https://learn.microsoft.com/en-us/purview/sensitivity-labels-sharepoint-onedrive-files#adding-support-for-pdf">Enable labeling support for PDFs</a></li>
+</ul>
+<p>With the <a href="https://www.powershellgallery.com/packages/Microsoft.Online.SharePoint.PowerShell">SharePoint Module</a> in PowerShell 5</p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">connect-sposervice</span> <span class="n">-url</span> <span class="s1">&#39;https://&lt;tenant&gt;-admin.sharepoint.com/&#39;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">Set-SPOTenant</span> <span class="n">-EnableAIPIntegration</span> <span class="nv">$true</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">Set-SPOTenant</span> <span class="n">-EnableSensitivityLabelforPDF</span> <span class="nv">$true</span>
+</span></code></pre></div>
+<h4 id="enable-labeling-for-containers">Enable Labeling for Containers<a class="headerlink" href="#enable-labeling-for-containers" title="Permanent link">&para;</a></h4>
+<p>In a fresh tenant, there will not be any EntraID group settings configured, so those <a href="https://learn.microsoft.com/en-us/azure/active-directory/enterprise-users/groups-settings-cmdlets">need to be created</a>. After that, you can <a href="https://learn.microsoft.com/en-us/purview/sensitivity-labels-teams-groups-sites#how-to-enable-sensitivity-labels-for-containers-and-synchronize-labels">enable the label sync</a>.</p>
+<p>With the <a href="https://www.powershellgallery.com/packages/AzureADPreview">AzureADPreview module</a> in Windows PowerShell (PS5)</p>
+<div class="language-PowerShell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">Connect-AzureAd</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nv">$TemplateId</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-AzureADDirectorySettingTemplate</span> <span class="p">|</span> <span class="nb">where </span><span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">DisplayName</span> <span class="o">-eq</span> <span class="s2">&quot;Group.Unified&quot;</span> <span class="p">}).</span><span class="n">Id</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nv">$Template</span> <span class="p">=</span> <span class="nb">Get-AzureADDirectorySettingTemplate</span> <span class="p">|</span> <span class="nb">where </span><span class="n">-Property</span> <span class="n">Id</span> <span class="n">-Value</span> <span class="nv">$TemplateId</span> <span class="o">-EQ</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nv">$setting</span> <span class="p">=</span> <span class="nv">$Template</span><span class="p">.</span><span class="n">CreateDirectorySetting</span><span class="p">()</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nv">$setting</span><span class="p">[</span><span class="s2">&quot;EnableMIPLabels&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s2">&quot;True&quot;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">New-AzureADDirectorySetting</span> <span class="n">-DirectorySetting</span> <span class="nv">$Setting</span>
+</span></code></pre></div>
+<p>Then, with the <a href="https://www.powershellgallery.com/packages/ExchangeOnlineManagement">ExchangeOnlineManagement module</a> in PS5/PS7+</p>
+<div class="language-PowerShell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">Connect-IPPSSession</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">Execute-AzureAdLabelSync</span>
+</span></code></pre></div>
+<h4 id="enable-co-authoring-for-encrypted-files">Enable co-authoring for Encrypted Files<a class="headerlink" href="#enable-co-authoring-for-encrypted-files" title="Permanent link">&para;</a></h4>
+<p>This can be <a href="https://learn.microsoft.com/en-us/purview/sensitivity-labels-coauthoring#how-to-enable-co-authoring-for-files-with-sensitivity-labels">done in the portal</a>, or via PowerShell.</p>
+<p>With the <a href="https://www.powershellgallery.com/packages/ExchangeOnlineManagement">ExchangeOnlineManagement module</a> in PS5/PS7+</p>
+<div class="language-PowerShell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">Connect-IPPSSession</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">Set-PolicyConfig</span> <span class="n">-EnableLabelCoauth</span><span class="p">:</span><span class="nv">$true</span>
+</span></code></pre></div>
+<h3 id="dlp">DLP<a class="headerlink" href="#dlp" title="Permanent link">&para;</a></h3>
+<h4 id="endpoint-dlp">Endpoint DLP<a class="headerlink" href="#endpoint-dlp" title="Permanent link">&para;</a></h4>
+<h5 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h5>
+<p><a href="https://compliance.microsoft.com/datalossprevention/endpointdlpsettings"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a>
+<a href="https://learn.microsoft.com/en-us/purview/dlp-configure-endpoint-settings"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<p>In Settings, change the following:
+- Advanced classification scanning and protection: <code>On</code></p>
+<h3 id="mip-scanner">MIP Scanner<a class="headerlink" href="#mip-scanner" title="Permanent link">&para;</a></h3>
+<p><a href="https://compliance.microsoft.com/compliancesettings/scanner_onboarding"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a>
+<a href="https://learn.microsoft.com/en-us/purview/deploy-scanner"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<p>Prerequisites
+- Service account in AD, exclude from MFA registration and CAs
+- SQL server for the scanner, as well as a windows server.</p>
+<p>Deployment
+1. Create a Scanner Cluster
+   <img alt="" src="../elements/purview_mip_scanner_cluster.png" />
+2. Create a Content Scan Job. Be sure to disable any of the auto options - this will just be for scanning.
+   <img alt="" src="../elements/purview_mip_scanner_scan_job.png" /></p>
+<h4 id="exact-data-match">Exact Data Match<a class="headerlink" href="#exact-data-match" title="Permanent link">&para;</a></h4>
+<p><a href="https://compliance.microsoft.com/insiderriskmgmt?viewid=policies"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a><br />
+<a href="https://learn.microsoft.com/en-us/purview/insider-risk-management-policies"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<h5 id="edm-sit">EDM SIT<a class="headerlink" href="#edm-sit" title="Permanent link">&para;</a></h5>
+<ol>
+<li>Create a new EDM SIT. Since I work in healthcare, I typically use <a href="https://github.com/synthetichealth/synthea">Synthea</a> to generate patient records. We do have <a href="https://learn.microsoft.com/en-us/purview/sit-get-started-exact-data-match-export-data#sample-file-templates">sample industry files</a> you can use. </li>
+<li>Make note of the datastrore name when you finish the EDM wizard. You'll need it for the EDM uploader.</li>
+</ol>
+<h5 id="edm-uploader-tool">EDM Uploader Tool<a class="headerlink" href="#edm-uploader-tool" title="Permanent link">&para;</a></h5>
+<ol>
+<li>Create a service account for the EDM upload agents to run as.</li>
+<li>Create a EntraID security group named <code>EDM_DataUploaders</code> and add the service account to it.</li>
+<li>Install the EDM upload tool to <code>c:\EDM</code></li>
+<li>Place sample data in <code>c:\EDM\Data</code></li>
+<li>Save the schema <code>.\EdmUploadAgent.exe /SaveSchema /DataStoreName your_data_store_name /OutputDir c:\edm\data</code></li>
+<li>Create <code>c:\EDM\hash</code></li>
+<li>Upload the data <code>.\EdmUploadAgent.exe /uploaddata /datastorename your_data_store_name /datafile C:\edm\data\your_data.csv /hashlocation c:\edm\hash /schema C:\edm\data\your_data_store_name.xml /allowedbadlinespercentage 5</code></li>
+</ol>
+<h3 id="insider-risk-management">Insider Risk Management<a class="headerlink" href="#insider-risk-management" title="Permanent link">&para;</a></h3>
+<h4 id="roles">Roles<a class="headerlink" href="#roles" title="Permanent link">&para;</a></h4>
+<p><a href="https://compliance.microsoft.com/compliancecenterpermissions"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a><br />
+<a href="https://learn.microsoft.com/en-us/purview/insider-risk-management-configure#step-1-required-enable-permissions-for-insider-risk-management"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a>  </p>
+<p>Add your account to the <code>Insider Risk Management</code> role. </p>
+<h4 id="browser-activity-plugins">Browser Activity Plugins<a class="headerlink" href="#browser-activity-plugins" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Deploy the Edge profile via Intune as described <a href="https://learn.microsoft.com/en-us/purview/insider-risk-management-browser-support#option-2-intune-setup-for-edge">here</a></li>
+<li>Deploy the Chrome profile via Intune as described <a href="https://learn.microsoft.com/en-us/purview/insider-risk-management-browser-support#option-2-intune-setup-for-chrome">here</a></li>
+</ol>
+<h4 id="settings_1">Settings<a class="headerlink" href="#settings_1" title="Permanent link">&para;</a></h4>
+<p><a href="https://compliance.microsoft.com/insiderriskmgmt/globalsettings?viewid=overview"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a><br />
+<a href="https://learn.microsoft.com/en-us/purview/insider-risk-management-settings"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<h5 id="policy-indicators">Policy Indicators<a class="headerlink" href="#policy-indicators" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Select all indicators under the following categories<ul>
+<li>Office</li>
+<li>Device</li>
+<li>Microsoft Defender for Endpoint</li>
+<li>Risky Browsing</li>
+<li>Microsoft Defender for Cloud Apps</li>
+</ul>
+</li>
+</ul>
+<h5 id="analytics">Analytics<a class="headerlink" href="#analytics" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Toggle analytics on</li>
+</ul>
+<h4 id="polices">Polices<a class="headerlink" href="#polices" title="Permanent link">&para;</a></h4>
+<p><a href="https://compliance.microsoft.com/insiderriskmgmt?viewid=policies"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f517.svg" title=":link:" /> Portal</a><br />
+<a href="https://learn.microsoft.com/en-us/purview/insider-risk-management-policies"><img alt="📘" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4d8.svg" title=":blue_book:" /> Docs</a></p>
+<ol>
+<li>Create a Data Leaks policy from the template
+   <img alt="" src="../elements/purview_irm_policies_data_leaks_1.png" /></li>
+<li>Target all users</li>
+<li>Choose not to prioritize content.
+   <img alt="" src="../elements/purview_irm_policies_data_leaks_2.png.png" /></li>
+<li>For triggering events, choose <code>User performs an exfiltration activity</code></li>
+<li>For thresholds, choose <code>Apply built-in thresholds.</code></li>
+<li>For indicators, leave the default ones checked.</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../Defender%20for%20Endpoint%20on%20iOS/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Defender for Endpoint on iOS">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Defender for Endpoint on iOS
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://fosstodon.org/@squidfunk" target="_blank" rel="noopener" title="fosstodon.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/chrisbues" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.indexes", "navigation.tracking", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "content.code.select"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
