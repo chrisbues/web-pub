@@ -8,28 +8,12 @@ These are the steps I typically take to set up a fresh M365 E5 tenant. This is n
 
 ## Entra ID
 
-### Azure AD Connect
+### Entra Cloud Sync
 
-Assuming you already have a Lab Domain Controller and Server for AAD Connect.
+:link:[Portal](https://entra.microsoft.com/#view/Microsoft_AAD_Connect_Provisioning/AADConnectMenuBlade/~/GetStarted)  
+:blue_book:[Docs](https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/tutorial-single-forest)
 
-Install AAD Connect, use Express Settings
-![aad_connect_1](./elements/aad_connect_1.png)
-
-After it is finished, re-run and enable Hybrid Join
-
-![aad_connect_2](./elements/aad_connect_2.png)
-![aad_connect_3](./elements/aad_connect_3.png)
-
-### Enable Group Writeback
-[:blue_book: Docs](https://learn.microsoft.com/en-us/azure/active-directory/hybrid/connect/how-to-connect-group-writeback-enable)
-
-On the AzureAD Connect server, run the following commands to enable Group Writeback in Windows PowerShell
-``` PowerShell
-Set-ADSyncScheduler -SyncCycleEnabled $false
-Set-ADSyncAADCompanyFeature -GroupWritebackV2 $true
-Set-ADSyncScheduler -SyncCycleEnabled $true
-Start-ADSyncSyncCycle -PolicyType Initial
-```
+Cloud Sync is the lightweight replacement for AAD Connect. Follow the instructions in the Docs link for a step-by-step example for a single forest install.
 
 ### Hybrid Cloud Trust
 [:blue_book: Docs](https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-authentication-passwordless-security-key-on-premises#example-4-prompt-for-cloud-credentials-using-modern-authentication)
