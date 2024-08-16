@@ -6,7 +6,7 @@ publish: true
 ---
 These are the steps I typically take to set up a fresh M365 E5 tenant. This is not complete. I'm documenting this (finally) as I rebuild a new test tenant.
 
-## Entra ID
+## Entra
 
 ### Entra Cloud Sync
 
@@ -15,12 +15,16 @@ These are the steps I typically take to set up a fresh M365 E5 tenant. This is n
 
 Cloud Sync is the lightweight replacement for AAD Connect. Follow the instructions in the Docs link for a step-by-step example for a single forest install.
 
+For conditional access, be sure to exclude the Directory Synchronization Accounts role from any MFA policies.
 ### Hybrid Cloud Trust
 [:blue_book: Docs](https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-authentication-passwordless-security-key-on-premises#example-4-prompt-for-cloud-credentials-using-modern-authentication)
 
 Create EntraID Kerberos Server
 
 ``` powershell
+# Install the AzureADHybridAuthenticationManagement module
+Install-Module -Name AzureADHybridAuthenticationManagement -AllowClobber
+
 # Specify the on-premises Active Directory domain. A new Azure AD
 # Kerberos Server object will be created in this Active Directory domain.
 $domain = "contoso.com"
@@ -56,11 +60,10 @@ CloudTrustDisplay  :
 ```
 
 
-## Entra
 ### Identity Protection
 
 #### Self Service Password Reset
-[:link: Portal]  
+[:link: Portal](https://entra.microsoft.com/#view/Microsoft_AAD_IAM/PasswordResetMenuBlade/~/Properties/fromNav/)  
 [:blue_book: Docs](https://learn.microsoft.com/en-us/entra/identity/authentication/howto-sspr-deployment)
 
 - Enable Self service password reset
@@ -70,7 +73,14 @@ CloudTrustDisplay  :
 [:link: Portal](https://entra.microsoft.com/#view/Microsoft_AAD_IAM/AuthenticationMethodsMenuBlade/~/AdminAuthMethods)  
 [:blue_book: Docs](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods)
 
+##### Policies
+For methods, enable
+- Passkeys (FIDO2)
+- Authenticator
+  ![authentication_methods_authenticator_configure](./elements/authentication_methods_authenticator_configure.png)
+
 - Enable FIDO2, Authenticator, Temporary Access Pass in Authentication Methods
+##### Authentication Methods Migration
 - Disable verification options in the [legacy MFA settings portal](https://account.activedirectory.windowsazure.com/usermanagement/mfasettings.aspx)
   ![entra_legacy_mfa](./elements/entra_legacy_mfa.png)
 - Disable Authentication methods in [SSPR Authentication Methods](https://entra.microsoft.com/#view/Microsoft_AAD_IAM/PasswordResetMenuBlade/~/AuthenticationMethods/fromNav/Identity)
@@ -101,24 +111,24 @@ CloudTrustDisplay  :
 [:blue_book: Docs](https://learn.microsoft.com/en-us/mem/intune/protect/windows-laps-overview)
 
 - Enable LAPS
-  ![entra_device_laps](./elements/entra_device_laps.png)
-
+  ![undefined](./elements/entra_device_enable_laps.png)
 #### Enterprise State Roaming
-[:link: Portal](https://portal.azure.com/#view/Microsoft_AAD_Devices/DevicesMenuBlade/~/RoamingSettings/menuId~/null)
+[:link: Portal](https://entra.microsoft.com/#view/Microsoft_AAD_Devices/DevicesMenuBlade/~/RoamingSettings/menuId/Devices)
 
 - Enable Enterprise State Roaming
-  ![](./elements/entra_devices_esr.png)
-
+  ![undefined](./elements/entra_devices_enable_dsr.png)
 ### Identity Protection
 
 #### Multifactor authentication registration policy
 
-- Create a AAD group called Service Accounts, add the AzureAD Connect sync account
-- Enable the policy, targeting all users and excluding 
-
+- Create a EntraID group called Service Accounts, add the Entra Cloud sync account
+- Enable the policy, targeting all users and excluding the group you just created.
+  ![undefined](./elements/entra_identity_protection_mfa_policy.png)
 ### Diagnostic Settings
 [:link: Portal](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/DiagnosticSettings)  
 [:blue_book: Docs](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings)
+
+Prior to doing so, create a Log Analytics workspace and add Sentinel to it.
 
 - Enable all diagnostic settings to log to your Sentinel's log analytics workspace
   ![](./elements/entra_diag_setings.png)
@@ -127,11 +137,15 @@ CloudTrustDisplay  :
 [:link: Portal](https://entra.microsoft.com/#view/Microsoft_Azure_Network_Access/Welcome.ReactView)  
 [:blue_book: Docs](https://learn.microsoft.com/en-us/entra/global-secure-access/)
 
-#### Internet Access
-1. Enable the [M365 Profile](https://entra.microsoft.com/#view/Microsoft_Azure_Network_Access/ForwardingProfile.ReactView)
-   ![](./elements/entra_gsa_365_profile.png)
-2. Download the [GSA Client](https://entra.microsoft.com/#view/Microsoft_Azure_Network_Access/Clients.ReactView) and deploy to Windows devices.
+#### Enable GSA
+Click Activate to enable GSA in your tenant
+![undefined](./elements/entra_gsa_enable.png)
 
+
+#### Internet Access
+1. Enable the [Microsoft Profile](https://entra.microsoft.com/#view/Microsoft_Azure_Network_Access/ForwardingProfile.ReactView)
+   ![undefined](./elements/entra_gsa_enable_ms_profile.png)
+2. Download the [GSA Client](https://entra.microsoft.com/#view/Microsoft_Azure_Network_Access/Clients.ReactView) and deploy to Windows devices.
 
 ## Intune
 
@@ -261,6 +275,12 @@ After enabling LAPS in Entra, create a Windows LAPS profile and apply to all dev
 ![intune_laps_profile1](./elements/intune_laps_profile1.png)
 ## [M365 Defender](https://security.microsoft.com/)
 
+### XDR
+
+Enable unified SIEM and XDR. 
+![](./elements/defender_unified_xdr_1.png)
+
+
 ### Email & collaboration
 
 [Policies & Rules -> Threat Policies -> Preset Security Configurations](https://security.microsoft.com/presetSecurityPolicies)
@@ -371,7 +391,7 @@ After installing, configure the Active Directory requirements listed below.
 	  ![Adding a gMSA account](elements/mdi_gmsa_account.png)
 
 
-## Microsoft Purview
+## [Purview](https://purview.microsoft.com)
 
 ### Device Onboarding
 [:book:Windows](https://learn.microsoft.com/en-us/purview/device-onboarding-overview)  
