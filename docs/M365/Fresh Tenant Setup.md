@@ -4,7 +4,10 @@ tags:
   - M365
 publish: true
 ---
-These are the steps I typically take to set up a fresh M365 E5 tenant. This is not complete. I'm documenting this (finally) as I rebuild a new test tenant.
+These are the steps I typically take to set up a fresh M365 E5 tenant. 
+
+!!! info "Work in Progress"
+    This is very much a continuous work in progress. I publish changes as I go.
 
 ## Entra
 
@@ -59,6 +62,28 @@ CloudKeyUpdatedOn  : 10/13/2022 9:23:43 PM
 CloudTrustDisplay  :
 ```
 
+### Device Settings
+[:link:][Portal](https://entra.microsoft.com/#view/Microsoft_AAD_Devices/DevicesMenuBlade/~/DeviceSettings/menuId/Overview)
+
+- Disable adding GA to local admin.
+
+![](./elements/entra_device_settings.png)
+
+
+
+### App Registrations
+
+#### MS Graph PowerShell SDK
+To enable use of the [MS Graph PowerShell SDK](https://learn.microsoft.com/en-us/powershell/microsoftgraph/?view=graph-powershell-1.0), create an app registration for app-only for use with the SDK.
+
+:link:[Portal](https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade/quickStartType~/null/sourceType/Microsoft_AAD_IAM)
+
+1. Create the app registration.
+   ![undefined](./elements/entra_app_reg_ps_sdk_1.png)
+2. Grant application permissions for Microsoft Graph that are necessary for your use cases.
+3. I prefer to do app consent cert-based authentication. Here's a couple of links explaining the process:
+	1. [How to use Connect-MgGraph - All Options — LazyAdmin](https://lazyadmin.nl/powershell/connect-mggraph/#certificate-based)
+	2. [Use app-only authentication with the Microsoft Graph PowerShell SDK | Microsoft Learn](https://learn.microsoft.com/en-us/powershell/microsoftgraph/app-only?view=graph-powershell-1.0)
 
 ### Identity Protection
 
@@ -151,14 +176,38 @@ Click Activate to enable GSA in your tenant
 
 ### Tenant Administration Settings
 
+#### Windows Data Connector
+:link:[Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/TenantAdminConnectorsMenu/~/windowsDataConnector)
+
+![undefined](./elements/intune_windows_data_connector.png)
 #### Defender for Endpoint Connector
 [:link: Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/TenantAdminConnectorsMenu/~/windowsDefenderATP)
 
-- Enable compliance policy evaluation for all platforms
-- Enable app sync
-- Enable App protection policy evaluation
-![](./elements/intune_mde_connector.png)
+You need to enable the Defender side first.
 
+![undefined](./elements/intune_mde_connector2.png)
+
+#### Windows Autopatch
+:link:[Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/TenantAdminMenu/~/windowsAutopatchTenantEnrollment)
+:blue_book:[Docs](https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/)
+
+- Run the prereq check. You'll see an advisory for co-management, this can be safely disregarded.![](./elements/intune_autopatch_prereq_check.png)
+- Grant admin access for Microsoft![](./elements/intune_autopatch_admin_access.png)
+- Provide Admin contact info. 
+- 
+
+
+
+
+### Applications
+[:link:Portal](https://endpoint.microsoft.com/#view/Microsoft_Intune_DeviceSettings/AppsMenu/~/overview)  
+[:blue_book: Docs](https://learn.microsoft.com/en-us/mem/intune/apps/apps-add)
+
+#### Windows
+Add app -> Microsoft 365 Apps for Windows 10 and Later. Assign to all devices.
+
+![intune_windows_m365_apps](./elements/intune_windows_m365_apps.png)
+![intune_windows_m365_apps_1](./elements/intune_windows_m365_apps_1.png)
 
 ### Devices
 
@@ -168,11 +217,21 @@ Click Activate to enable GSA in your tenant
 - Set MDM and MAM user scopes to all
   ![intune_auto_enrollment](./elements/intune_auto_enrollment.png)
 
-#### Windows Autopilot
-[:link: Portal](https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/AutopilotDeploymentProfiles.ReactView)
+#### Windows Autopilot 
+:link: [Portal](https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/DevicePreparationSettings.ReactView/isReactView~/true)
 
-- Create a new Autopilot deployment profile
-  ![intune_autopilot_profile](./elements/intune_autopilot_profile.png)![intune_autopilot_profile_1](./elements/intune_autopilot_profile_1.png)
+Follow this guide: [Overview for Windows Autopilot device preparation user-driven Microsoft Entra join in Intune | Microsoft Learn](https://learn.microsoft.com/en-us/autopilot/device-preparation/tutorial/user-driven/entra-join-workflow)
+
+Prereqs:
+- Create Entra Groups
+	- Automatic Enrolment Set
+	- Enrolled devices. Windows Autopilot device preparation devices
+		- Set App ID f1346770-5b25-470b-88bd-d5744ab7952c as the owner.
+	- Targeted Users - Windows Autopilot device preparation users
+- Create/update an Office deployment, target the device group created above.
+
+Create a device prep policy
+![](./elements/intune_autopilot_device_prep.png)
 
 #### iOS Enrollment
 [:link: Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesIosMenu/~/iosEnrollment)
@@ -222,15 +281,6 @@ User-driven Android enrollment is a two step process - the managed Google Play a
 ##### Managed Google Play Account Linking
 
 ![](./elements/intune_android_linking.png)
-### Applications
-[:link:Portal](https://endpoint.microsoft.com/#view/Microsoft_Intune_DeviceSettings/AppsMenu/~/overview)  
-[:blue_book: Docs](https://learn.microsoft.com/en-us/mem/intune/apps/apps-add)
-
-#### Windows
-Add app -> Microsoft 365 Apps for Windows 10 and Later. Assign to all devices.
-
-![intune_windows_m365_apps](./elements/intune_windows_m365_apps.png)
-![intune_windows_m365_apps_1](./elements/intune_windows_m365_apps_1.png)
 
 
 ### Endpoint security
@@ -254,10 +304,6 @@ The config files for MDE on Mac and Linux are in [this GitHub repo](https://gith
 4. Deploy the [MDE Preferences config file from the repo](https://github.com/microsoft/mdatp-xplat/blob/master/macos/settings/data_loss_prevention/com.microsoft.wdav.mobileconfig) to enable Endpoint DLP.
 5. Deploy the [Defender App via Intune](https://learn.microsoft.com/en-us/defender-endpoint/mac-install-with-intune#step-14-publish-application)
 6. Deploy the [MDE onboarding package](https://learn.microsoft.com/en-us/defender-endpoint/mac-install-with-intune#step-15-download-the-onboarding-package)
-
-
-
-
 
 
 
@@ -348,7 +394,7 @@ In the Defender Portal, go to [Settings -> Endpoints](https://security.microsoft
 #### Advanced Features
 Set the features configured below
 
-![mde_advanced_features](./elements/mde_advanced_features.png)
+![undefined](./elements/mde_advanced_features_2.png)
 
 ### Defender for Identity (MDI)
 
@@ -391,7 +437,7 @@ After installing, configure the Active Directory requirements listed below.
 	  ![Adding a gMSA account](elements/mdi_gmsa_account.png)
 
 
-## [Purview](https://purview.microsoft.com)
+## Purview
 
 ### Device Onboarding
 [:book:Windows](https://learn.microsoft.com/en-us/purview/device-onboarding-overview)  
