@@ -4,10 +4,7 @@ tags:
   - M365
 publish: true
 ---
-These are the steps I typically take to set up a fresh M365 E5 tenant. 
-
-!!! info "Work in Progress"
-    This is very much a continuous work in progress. I publish changes as I go.
+These are the steps I typically take to set up a fresh M365 E5 tenant. This is not complete. I'm documenting this (finally) as I rebuild a new test tenant.
 
 ## Entra
 
@@ -188,15 +185,7 @@ You need to enable the Defender side first.
 ![undefined](./elements/intune_mde_connector2.png)
 
 #### Windows Autopatch
-:link:[Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/TenantAdminMenu/~/windowsAutopatchTenantEnrollment)
-:blue_book:[Docs](https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/)
-
-- Run the prereq check. You'll see an advisory for co-management, this can be safely disregarded.![](./elements/intune_autopatch_prereq_check.png)
-- Grant admin access for Microsoft![](./elements/intune_autopatch_admin_access.png)
-- Provide Admin contact info. 
-- 
-
-
+:li
 
 
 ### Applications
@@ -218,7 +207,7 @@ Add app -> Microsoft 365 Apps for Windows 10 and Later. Assign to all devices.
   ![intune_auto_enrollment](./elements/intune_auto_enrollment.png)
 
 #### Windows Autopilot 
-:link: [Portal](https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/DevicePreparationSettings.ReactView/isReactView~/true)
+[:link: Portal](https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/DevicePreparationSettings.ReactView/isReactView~/true)
 
 Follow this guide: [Overview for Windows Autopilot device preparation user-driven Microsoft Entra join in Intune | Microsoft Learn](https://learn.microsoft.com/en-us/autopilot/device-preparation/tutorial/user-driven/entra-join-workflow)
 

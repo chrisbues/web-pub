@@ -4,10 +4,7 @@ tags:
   - M365
 publish: true
 ---
-These are the steps I typically take to set up a fresh M365 E5 tenant. 
-
-!!! info "Work in Progress"
-    This is very much a continuous work in progress. I publish changes as I go.
+These are the steps I typically take to set up a fresh M365 E5 tenant. This is not complete. I'm documenting this (finally) as I rebuild a new test tenant.
 
 ## Entra
 
@@ -61,14 +58,6 @@ CloudKeyVersion    : 27591
 CloudKeyUpdatedOn  : 10/13/2022 9:23:43 PM
 CloudTrustDisplay  :
 ```
-
-### Device Settings
-[:link:][Portal](https://entra.microsoft.com/#view/Microsoft_AAD_Devices/DevicesMenuBlade/~/DeviceSettings/menuId/Overview)
-
-- Disable adding GA to local admin.
-
-![](./elements/entra_device_settings.png)
-
 
 
 ### App Registrations
@@ -187,18 +176,6 @@ You need to enable the Defender side first.
 
 ![undefined](./elements/intune_mde_connector2.png)
 
-#### Windows Autopatch
-:link:[Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/TenantAdminMenu/~/windowsAutopatchTenantEnrollment)
-:blue_book:[Docs](https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/)
-
-- Run the prereq check. You'll see an advisory for co-management, this can be safely disregarded.![](./elements/intune_autopatch_prereq_check.png)
-- Grant admin access for Microsoft![](./elements/intune_autopatch_admin_access.png)
-- Provide Admin contact info. 
-- 
-
-
-
-
 ### Applications
 [:link:Portal](https://endpoint.microsoft.com/#view/Microsoft_Intune_DeviceSettings/AppsMenu/~/overview)  
 [:blue_book: Docs](https://learn.microsoft.com/en-us/mem/intune/apps/apps-add)
@@ -218,20 +195,27 @@ Add app -> Microsoft 365 Apps for Windows 10 and Later. Assign to all devices.
   ![intune_auto_enrollment](./elements/intune_auto_enrollment.png)
 
 #### Windows Autopilot 
-:link: [Portal](https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/DevicePreparationSettings.ReactView/isReactView~/true)
-
-Follow this guide: [Overview for Windows Autopilot device preparation user-driven Microsoft Entra join in Intune | Microsoft Learn](https://learn.microsoft.com/en-us/autopilot/device-preparation/tutorial/user-driven/entra-join-workflow)
+[:link: Portal](https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/DevicePreparationSettings.ReactView/isReactView~/true)
 
 Prereqs:
-- Create Entra Groups
-	- Automatic Enrolment Set
-	- Enrolled devices. Windows Autopilot device preparation devices
-		- Set App ID f1346770-5b25-470b-88bd-d5744ab7952c as the owner.
-	- Targeted Users - Windows Autopilot device preparation users
-- Create/update an Office deployment, target the device group created above.
+- Create an Entra ID Security Group to hold enrolled devices. Set App ID f1346770-5b25-470b-88bd-d5744ab7952c as the owner.
+- Create an Office
 
-Create a device prep policy
-![](./elements/intune_autopilot_device_prep.png)
+
+Prior to create an autopilot device preparation profile 
+Create a Autopilot Device Preparation policy
+
+![](elements/intune_autopilot_device_prep_profile.png)
+
+
+
+
+
+
+
+
+- Create a new Autopilot deployment profile
+  ![intune_autopilot_profile](./elements/intune_autopilot_profile.png)![intune_autopilot_profile_1](./elements/intune_autopilot_profile_1.png)
 
 #### iOS Enrollment
 [:link: Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesIosMenu/~/iosEnrollment)
