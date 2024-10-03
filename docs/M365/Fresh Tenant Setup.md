@@ -194,11 +194,9 @@ You need to enable the Defender side first.
 - Run the prereq check. You'll see an advisory for co-management, this can be safely disregarded.![](./elements/intune_autopatch_prereq_check.png)
 - Grant admin access for Microsoft![](./elements/intune_autopatch_admin_access.png)
 - Provide Admin contact info. 
-- 
-
-
-
-
+- Add devices to the the default autopatch group `Windows Autopatch Device Registration`
+- Wait a few minutes, then ensure the devices show in the Windows Autopatch devices [here](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesMenu/~/autopatchGroupDevices)
+- Put a couple of devices in the Test ring by clicking on the device name, then selecting Device Actions -> Assign Ring. In the flyout, choose the Test ring![](./elements/intune_windows_autopatch_device_ring.png) 
 ### Applications
 [:link:Portal](https://endpoint.microsoft.com/#view/Microsoft_Intune_DeviceSettings/AppsMenu/~/overview)  
 [:blue_book: Docs](https://learn.microsoft.com/en-us/mem/intune/apps/apps-add)
@@ -246,6 +244,10 @@ User-driven iOS enrollment is a two step process - the push certificate and the 
 ##### Enrollment Profile
 [:link: Portal](https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/UserInitiatedEnrollmentProfilesListBlade)
 
+!!! info "Native iOS enrollment"
+    There's this nifty-keen [account driven user enrollment](https://learn.microsoft.com/en-us/mem/intune/enrollment/apple-account-driven-user-enrollment) available in iOS 15+, but you'll need a web server to serve up the json file Apple expects.
+
+
 - Configure an enrollment profile
 	- Create a profile that allows user choice of type of device (corporate vs user), target all users.
 ![](./elements/intune_apple_enrollment_profile.png)
@@ -282,28 +284,51 @@ User-driven Android enrollment is a two step process - the managed Google Play a
 
 ![](./elements/intune_android_linking.png)
 
+#### MacOS Enrollment
+[:link:Portal]([macOS - Microsoft Intune admin center](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesMacOsMenu/~/appleEnrollment))  
+[:blue_book:Docs]([macOS device enrollment guide for Microsoft Intune | Microsoft Learn](https://learn.microsoft.com/en-us/mem/intune/fundamentals/deployment-guide-enrollment-macos))
+
+As with MDE for MacOS, this tends to change, so be sure to check the docs for the most recent steps.
+
+tl;dr
+- Create a MacOS enrollment profile [here](https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/UserInitiatedEnrollmentProfilesListBlade) if you didn't for iOS yet - they're shared between iOS and MacOS  ![](./elements/intune_macos_enrollment_profile.png)
+- Download the Company Portal app for MacOS from [here](https://go.microsoft.com/fwlink/?linkid=853070) and deploy the company portal app as a MacOS LOB app  ![](./elements/intune_macos_company_portal.png)
+
+
+#### MacOS Platform SSO
+Use the instructions [here](https://learn.microsoft.com/en-us/mem/intune/configuration/platform-sso-macos) as a guide. 
+
+tl;dr
+Use the settings below in a config profile to deploy platform sso with the following options:
+- Password authentication which syncs the Entra password with the local account password
+- Create new users as admins
+
+![](./elements/intune_macos_platform_sso-2.png)
 
 ### Endpoint security
 [:link:Portal](https://endpoint.microsoft.com/#view/Microsoft_Intune_Workflows/SecurityManagementMenu/~/overview)
 
 ##### Windows
-Under Endpoint Detection and Response, create a new policy targeting Windows 10,11 and Server. Target all devices.
+Under Endpoint Detection and Response, create a new EDR policy targeting Windows. Target all devices.
 
-![intune_edr_profile](./elements/intune_edr_profile.png)
+![](./elements/intune_edr_profile-1.png)
+
 
 ![intune_edr_profile_1](./elements/intune_edr_profile_1.png)
 
 #### MacOS
 Deploying MDE on MacOS is a multi-step manual process, and changes occasionally. Refer to [Intune-based deployment for Microsoft Defender for Endpoint on Mac - Microsoft Defender for Endpoint | Microsoft Learn](https://learn.microsoft.com/en-us/defender-endpoint/mac-install-with-intune) for the most current steps.
 
-The config files for MDE on Mac and Linux are in [this GitHub repo](https://github.com/microsoft/mdatp-xplat/tree/master).
+tl;dr
+If you want a sample combined deployment, I've combined mobileconfig files here to set the following settings
+- AutoUpdate enabled, broad channel
+- Network protection set to block
+- All other required mobileconfig settings, such as full disk access, etc.
 
-1. Approve system extensions
-2. Deploy the [combined mobileconfig file from the repo](https://github.com/microsoft/mdatp-xplat/blob/master/macos/mobileconfig/combined/mdatp.mobileconfig) to simplify policies.
-3. Deploy the [Microsoft AutoUpdate config file from the repo](https://github.com/microsoft/mdatp-xplat/blob/master/macos/settings/microsoft_auto_update/com.microsoft.autoupdate2.mobileconfig)
-4. Deploy the [MDE Preferences config file from the repo](https://github.com/microsoft/mdatp-xplat/blob/master/macos/settings/data_loss_prevention/com.microsoft.wdav.mobileconfig) to enable Endpoint DLP.
-5. Deploy the [Defender App via Intune](https://learn.microsoft.com/en-us/defender-endpoint/mac-install-with-intune#step-14-publish-application)
-6. Deploy the [MDE onboarding package](https://learn.microsoft.com/en-us/defender-endpoint/mac-install-with-intune#step-15-download-the-onboarding-package)
+Deploy the combined profile:
+- Create a device configuration profile for macOS devices using a custom template  ![](./elements/intune_macos_mde_device_config.png)
+- For configuration settings, upload the mobileconfig from above. Target device channel.
+- Target all MacOS devices
 
 
 
@@ -392,10 +417,9 @@ In the Defender Portal, go to [Settings -> Cloud Apps](https://security.microsof
 In the Defender Portal, go to [Settings -> Endpoints](https://security.microsoft.com/securitysettings/endpoints/integration)
 
 #### Advanced Features
-Set the features configured below
+Ensure your settings match those below:
 
-![undefined](./elements/mde_advanced_features_2.png)
-
+![](./elements/mde_advanced_features-1.png)
 ### Defender for Identity (MDI)
 
 #### General
@@ -438,6 +462,16 @@ After installing, configure the Active Directory requirements listed below.
 
 
 ## Purview
+
+### Advanced Audit
+:link:[Portal](https://purview.microsoft.com/audit/auditsearch)
+
+To enable auditing with the [ExchangeOnlineManagement module](https://www.powershellgallery.com/packages/ExchangeOnlineManagement) in PS5/PS7+
+
+``` powershell
+Enable-OrganizationCustomization
+Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true
+```
 
 ### Device Onboarding
 [:book:Windows](https://learn.microsoft.com/en-us/purview/device-onboarding-overview)  
@@ -573,3 +607,4 @@ Add your account to the `Insider Risk Management` role.
 4. For triggering events, choose `User performs an exfiltration activity`
 5. For thresholds, choose `Apply built-in thresholds.`
 6. For indicators, leave the default ones checked.
+7. 
