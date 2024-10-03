@@ -290,7 +290,7 @@ User-driven Android enrollment is a two step process - the managed Google Play a
 
 As with MDE for MacOS, this tends to change, so be sure to check the docs for the most recent steps.
 
-tl;dr
+:material-**head**-sync: tl;dr
 - Create a MacOS enrollment profile [here](https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/UserInitiatedEnrollmentProfilesListBlade) if you didn't for iOS yet - they're shared between iOS and MacOS  ![](./elements/intune_macos_enrollment_profile.png)
 - Download the Company Portal app for MacOS from [here](https://go.microsoft.com/fwlink/?linkid=853070) and deploy the company portal app as a MacOS LOB app  ![](./elements/intune_macos_company_portal.png)
 
@@ -319,7 +319,7 @@ Under Endpoint Detection and Response, create a new EDR policy targeting Windows
 #### MacOS
 Deploying MDE on MacOS is a multi-step manual process, and changes occasionally. Refer to [Intune-based deployment for Microsoft Defender for Endpoint on Mac - Microsoft Defender for Endpoint | Microsoft Learn](https://learn.microsoft.com/en-us/defender-endpoint/mac-install-with-intune) for the most current steps.
 
-tl;dr
+:material-**head**-sync: tl;dr
 If you want a sample combined deployment, I've combined mobileconfig files here to set the following settings
 - AutoUpdate enabled, broad channel
 - Network protection set to block
