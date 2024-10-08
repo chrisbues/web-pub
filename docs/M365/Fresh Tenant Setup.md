@@ -9,6 +9,9 @@ These are the steps I typically take to set up a fresh M365 E5 tenant.
 !!! info "Work in Progress"
     This is very much a continuous work in progress. I publish changes as I go.
 
+!!! warning "Use at your own risk"
+     These are my personal steps. This should not be construed as official guidance. Always refer to the official Microsoft documentation available at [learn.microsoft.com](https://learn.microsoft.com/)
+
 ## Entra
 
 ### Entra Cloud Sync
@@ -612,4 +615,3 @@ Add your account to the `Insider Risk Management` role.
 4. For triggering events, choose `User performs an exfiltration activity`
 5. For thresholds, choose `Apply built-in thresholds.`
 6. For indicators, leave the default ones checked.
-7. 
