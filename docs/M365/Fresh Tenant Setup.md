@@ -319,7 +319,7 @@ Under Endpoint Detection and Response, create a new EDR policy targeting Windows
 #### MacOS
 Deploying MDE on MacOS is a multi-step manual process, and changes occasionally. Refer to [Intune-based deployment for Microsoft Defender for Endpoint on Mac - Microsoft Defender for Endpoint | Microsoft Learn](https://learn.microsoft.com/en-us/defender-endpoint/mac-install-with-intune) for the most current steps.
 
-:material-**head**-sync: tl;dr  
+:material-head-sync: tl;dr  
 If you want a sample combined deployment, I've combined mobileconfig files here to set the following settings
 - AutoUpdate enabled, broad channel
 - Network protection set to block
@@ -330,7 +330,12 @@ Deploy the combined profile:
 - For configuration settings, upload the mobileconfig from above. Target device channel.
 - Target all MacOS devices
 
+Deploy MDE:
+- [MDE App in Intune](https://intune.microsoft.com/#view/Microsoft_Intune_Apps/AppWizardBlade/appId/00000000-0000-0000-0000-000000000000/appType/MacOSMicrosoftDefenderApp)
 
+Deploy the Onboarding Package
+- Download the MDM/Intune onboarding package from [Defender XDR](https://security.microsoft.com/securitysettings/endpoints/onboarding)  ![](./elements/defender_mac_onboarding_package.png)
+- Deploy via Intune as a Custom Config template  ![](./elements/intune_mde_onboarding.png)
 
 #### [Security Baselines](https://endpoint.microsoft.com/#view/Microsoft_Intune_Workflows/SecurityManagementMenu/~/securityBaselines)
 
