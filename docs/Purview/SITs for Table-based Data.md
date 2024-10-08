@@ -20,6 +20,7 @@ The corresponding regex to find this MRN is this:
 The custom SIT definition looks like this:
 
 **Pattern #1**
+
 - Confidence: High
 - Regular Expression: `\b\d{6,9}\b`
 - Character proximity: 300 characters (default)
@@ -27,6 +28,7 @@ The custom SIT definition looks like this:
 	- MRN, Medical Record Number, Record Number
 
 **Pattern #2**
+
 - Confidence: Low
 - Regular Expression: `\b\d{6,9}\b`
 - Character proximity: 300 characters (default)
