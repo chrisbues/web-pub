@@ -30,11 +30,25 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.x
       #- run: sudo apt install weasyprint -y
-      #- run: pip install mkdocs-material mkdocs-pdf-export-plugin
+      #- run: pip install mkdocs-material mkdocs-pdf-export-plugig
+      - uses: jannekem/run-python-script-action@v1
+        with:
+          script: |
+            import os
+            def replace_spaces_with_underscores(directory):
+                for root, dirs, files in os.walk(directory):
+                    for file in files:
+                        if ' ' in file:
+                            new_file_name = file.replace(' ', '_')
+                            old_file_path = os.path.join(root, file)
+                            new_file_path = os.path.join(root, new_file_name)
+                            os.rename(old_file_path, new_file_path)
+                            print(f'Renamed: {old_file_path} -> {new_file_path}')
+            replace_spaces_with_underscores('docs')
       - run: pip install mkdocs-material mkdocs-page-pdf
       - run: mkdocs gh-deploy --force
