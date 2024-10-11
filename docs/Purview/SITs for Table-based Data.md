@@ -105,6 +105,7 @@ Instead of the regex matching just one instance, incorporate positive lookahead 
 This will, however, miss the last MRN, as it doesn't have a MRN following it on the next line.
 ![](./elements/purview_sit_regex_lookahead.png)
 
+
 ### Relaxing proximity
 
 This technique, featured on the [Compliance CxE site](https://microsoft.github.io/ComplianceCxE/), creates an custom SIT with settings that will increase matches by assuming that low confidence matches without keywords will be counted as high confidence as long as there are high confidence matches as well of the same type. This works well for table based data, where it's generally safe to assume that the column contains data that matches.
