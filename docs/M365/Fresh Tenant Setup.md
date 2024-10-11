@@ -7,7 +7,7 @@ publish: true
 These are the steps I typically take to set up a fresh M365 E5 tenant. 
 
 !!! info "Work in Progress"
-    This is very much a continuous work in progress. I publish changes as I go.
+    This is very much a continuous work in progress. I publish changes as I go. Screenshots might be out of date.
 
 !!! warning "Use at your own risk"
      These are my personal steps. This should not be construed as official guidance. Always refer to the official Microsoft documentation available at [learn.microsoft.com](https://learn.microsoft.com/)
@@ -95,7 +95,9 @@ To enable use of the [MS Graph PowerShell SDK](https://learn.microsoft.com/en-us
 [:blue_book: Docs](https://learn.microsoft.com/en-us/entra/identity/authentication/howto-sspr-deployment)
 
 - Enable Self service password reset
-	- Target a group that excludes service accounts. 
+	- Target a group that excludes service accounts. Easiest way to do this is with a dynamic group. Example rule: `(user.displayName -ne "On-Premises Directory Synchronization Service Account") and (user.userPrincipalName -notStartsWith "svc")`
+- Enable Password writeback in On-premises integration
+    ![](./elements/entra_password_writeback.png)
 
 #### Authentication Methods
 [:link: Portal](https://entra.microsoft.com/#view/Microsoft_AAD_IAM/AuthenticationMethodsMenuBlade/~/AdminAuthMethods)  
@@ -103,7 +105,7 @@ To enable use of the [MS Graph PowerShell SDK](https://learn.microsoft.com/en-us
 
 ##### Policies
 For methods, enable
-- Passkeys (FIDO2)
+- Passkeys
 - Authenticator
   ![authentication_methods_authenticator_configure](./elements/authentication_methods_authenticator_configure.png)
 
@@ -615,3 +617,5 @@ Add your account to the `Insider Risk Management` role.
 4. For triggering events, choose `User performs an exfiltration activity`
 5. For thresholds, choose `Apply built-in thresholds.`
 6. For indicators, leave the default ones checked.
+7. 
+
