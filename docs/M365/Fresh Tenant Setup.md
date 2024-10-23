@@ -16,7 +16,7 @@ These are the steps I typically take to set up a fresh M365 E5 tenant.
 
 ### Entra Cloud Sync
 
-:link:[Portal](https://entra.microsoft.com/#view/Microsoft_AAD_Connect_Provisioning/AADConnectMenuBlade/~/GetStarted)  :blue_book:[Docs](https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/tutorial-single-forest)
+[:link: Portal](https://entra.microsoft.com/#view/Microsoft_AAD_Connect_Provisioning/AADConnectMenuBlade/~/GetStarted)  [:blue_book: Docs](https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/tutorial-single-forest)
 
 Cloud Sync is the lightweight replacement for AAD Connect. Follow the instructions in the Docs link for a step-by-step example for a single forest install.
 
@@ -68,7 +68,7 @@ CloudTrustDisplay  :
 
 ### Device Settings
 
-:link:[Portal](https://entra.microsoft.com/#view/Microsoft_AAD_Devices/DevicesMenuBlade/~/DeviceSettings/menuId/Overview)
+[:link: Portal](https://entra.microsoft.com/#view/Microsoft_AAD_Devices/DevicesMenuBlade/~/DeviceSettings/menuId/Overview)
 
 - Disable adding GA to local admin.  
     ![Screenshot of Microsoft Entra join and registration settings webpage with various toggles and options.](./elements/entra_device_settings.png)
@@ -79,7 +79,7 @@ CloudTrustDisplay  :
 
 To enable use of the [MS Graph PowerShell SDK](https://learn.microsoft.com/en-us/powershell/microsoftgraph/?view=graph-powershell-1.0), create an app registration for app-only for use with the SDK.
 
-:link:[Portal](https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade/quickStartType~/null/sourceType/Microsoft_AAD_IAM)
+[:link: Portal](https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade/quickStartType~/null/sourceType/Microsoft_AAD_IAM)
 
 1. Create the app registration.  
    ![Screenshot of a registration form for an application, with fields for name, account type selection, and redirect URI.](./elements/entra_app_reg_ps_sdk_1.png)
@@ -193,7 +193,7 @@ Click Activate to enable GSA in your tenant
 
 #### Windows Data Connector
 
-:link:[Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/TenantAdminConnectorsMenu/~/windowsDataConnector)
+[:link:Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/TenantAdminConnectorsMenu/~/windowsDataConnector)
 
 ![UI settings for Windows data and license verification with toggles set to 'On'.](./elements/intune_windows_data_connector.png)
 
@@ -207,19 +207,19 @@ You need to enable the Defender side first.
 
 #### Windows Autopatch
 
-:link:[Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/TenantAdminMenu/~/windowsAutopatchTenantEnrollment)
-:blue_book:[Docs](https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/)
+[:link: Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/TenantAdminMenu/~/windowsAutopatchTenantEnrollment)
+[:blue_book: Docs](https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/)
 
 - Run the prereq check. You'll see an advisory for co-management, this can be safely disregarded.![](./elements/intune_autopatch_prereq_check.png)
 - Grant admin access for Microsoft![](./elements/intune_autopatch_admin_access.png)
-- Provide Admin contact info. 
+- Provide Admin contact info.
 - Add devices to the the default autopatch group `Windows Autopatch Device Registration`
 - Wait a few minutes, then ensure the devices show in the Windows Autopatch devices [here](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesMenu/~/autopatchGroupDevices)
 - Put a couple of devices in the Test ring by clicking on the device name, then selecting Device Actions -> Assign Ring. In the flyout, choose the Test ring![](./elements/intune_windows_autopatch_device_ring.png)
 
 ### Applications
 
-[:link:Portal](https://endpoint.microsoft.com/#view/Microsoft_Intune_DeviceSettings/AppsMenu/~/overview)  [:blue_book: Docs](https://learn.microsoft.com/en-us/mem/intune/apps/apps-add)
+[:link: Portal](https://endpoint.microsoft.com/#view/Microsoft_Intune_DeviceSettings/AppsMenu/~/overview)  [:blue_book: Docs](https://learn.microsoft.com/en-us/mem/intune/apps/apps-add)
 
 #### Windows
 
@@ -239,7 +239,7 @@ Add app -> Microsoft 365 Apps for Windows 10 and Later. Assign to all devices.
 
 #### Windows Autopilot
 
-:link: [Portal](https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/DevicePreparationSettings.ReactView/isReactView~/true)
+[:link: Portal](https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/DevicePreparationSettings.ReactView/isReactView~/true)
 
 Follow this guide: [Overview for Windows Autopilot device preparation user-driven Microsoft Entra join in Intune | Microsoft Learn](https://learn.microsoft.com/en-us/autopilot/device-preparation/tutorial/user-driven/entra-join-workflow)
 
@@ -305,7 +305,7 @@ There are two options for Apple Config profile - with user affinity and without.
 
 #### Android Enrollment
 
-[:link:Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesAndroidMenu/~/androidEnrollment)  [:blue_book:Docs](https://learn.microsoft.com/en-us/mem/intune/fundamentals/deployment-guide-enrollment-android#enable-enrollment-of-android-for-work-devices)
+[:link: Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesAndroidMenu/~/androidEnrollment)  [:blue_book: Docs](https://learn.microsoft.com/en-us/mem/intune/fundamentals/deployment-guide-enrollment-android#enable-enrollment-of-android-for-work-devices)
 
 User-driven Android enrollment is a two step process - the managed Google Play account linking  and the enrollment profile.
 
@@ -315,7 +315,7 @@ User-driven Android enrollment is a two step process - the managed Google Play a
 
 #### MacOS Enrollment
 
-[:link:Portal]([macOS - Microsoft Intune admin center](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesMacOsMenu/~/appleEnrollment))  [:blue_book:Docs]([macOS device enrollment guide for Microsoft Intune | Microsoft Learn](https://learn.microsoft.com/en-us/mem/intune/fundamentals/deployment-guide-enrollment-macos))
+[:link: Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesMacOsMenu/~/appleEnrollment)  [:blue_book: Docs](https://learn.microsoft.com/en-us/mem/intune/fundamentals/deployment-guide-enrollment-macos)
 
 As with MDE for MacOS, this tends to change, so be sure to check the docs for the most recent steps.
 
@@ -328,7 +328,7 @@ As with MDE for MacOS, this tends to change, so be sure to check the docs for th
 
 #### MacOS Platform SSO
 
-Use the instructions [here](https://learn.microsoft.com/en-us/mem/intune/configuration/platform-sso-macos) as a guide. 
+Use the instructions [here](https://learn.microsoft.com/en-us/mem/intune/configuration/platform-sso-macos) as a guide.
 
 tl;dr
 Use the settings below in a config profile to deploy platform sso with the following options:
@@ -340,7 +340,7 @@ Use the settings below in a config profile to deploy platform sso with the follo
 
 ### Endpoint security
 
-[:link:Portal](https://endpoint.microsoft.com/#view/Microsoft_Intune_Workflows/SecurityManagementMenu/~/overview)
+[:link: Portal](https://endpoint.microsoft.com/#view/Microsoft_Intune_Workflows/SecurityManagementMenu/~/overview)
 
 #### Windows
 
@@ -354,7 +354,6 @@ Use the settings below in a config profile to deploy platform sso with the follo
   - Enable Network Protection in Block mode. Target all devices.  
     ![](./elements/intune_mde_windows_av_policy_1.png)
 
-
 #### MacOS
 
 Deploying MDE on MacOS is a multi-step manual process, and changes occasionally. Refer to [Intune-based deployment for Microsoft Defender for Endpoint on Mac - Microsoft Defender for Endpoint | Microsoft Learn](https://learn.microsoft.com/en-us/defender-endpoint/mac-install-with-intune) for the most current steps.
@@ -366,57 +365,54 @@ If you want a sample combined deployment, I've combined mobileconfig files here 
 - Network protection set to block
 - All other required mobileconfig settings, such as full disk access, etc.
 
-Deploy the combined profile:
+- Deploy the combined profile
+  - Create a device configuration profile for macOS devices using a custom template  
+    ![](./elements/intune_macos_mde_device_config.png)
+  - For configuration settings, upload the mobileconfig from above. Target device channel.
+  - Target all MacOS devices
+- Deploy MDE
+  - Deploy the [MDE packageMDE App in Intune](https://intune.microsoft.com/#view/Microsoft_Intune_Apps/AppWizardBlade/appId/00000000-0000-0000-0000-000000000000/appType/MacOSMicrosoftDefenderApp)
+- Deploy the Onboarding Package
+- Download the MDM/Intune onboarding package from [Defender XDR](https://security.microsoft.com/securitysettings/endpoints/onboarding)  
+    ![](./elements/defender_mac_onboarding_package.png)
+- Deploy via Intune as a Custom Config template  
+    ![](./elements/intune_mde_onboarding.png)
 
-- Create a device configuration profile for macOS devices using a custom template  ![](./elements/intune_macos_mde_device_config.png)
-- For configuration settings, upload the mobileconfig from above. Target device channel.
-- Target all MacOS devices
+#### Security Baselines
 
-Deploy MDE:
+- Create a new Microsoft Defender for Endpoint Baseline policy and target all devices.  
+  ![intune_security_baselines](./elements/intune_security_baselines.png)
 
-- [MDE App in Intune](https://intune.microsoft.com/#view/Microsoft_Intune_Apps/AppWizardBlade/appId/00000000-0000-0000-0000-000000000000/appType/MacOSMicrosoftDefenderApp)
+#### Account Protection (LAPS)
 
-Deploy the Onboarding Package
+[:link: Portal](https://endpoint.microsoft.com/#view/Microsoft_Intune_Workflows/SecurityManagementMenu/~/accountprotection)
 
-- Download the MDM/Intune onboarding package from [Defender XDR](https://security.microsoft.com/securitysettings/endpoints/onboarding)  ![](./elements/defender_mac_onboarding_package.png)
-- Deploy via Intune as a Custom Config template  ![](./elements/intune_mde_onboarding.png)
+- Enable LAPS in the portal
+- Create a Windows LAPS profile and apply to all devices.  
+  ![intune_laps_profile](./elements/intune_laps_profile.png)
 
-#### [Security Baselines](https://endpoint.microsoft.com/#view/Microsoft_Intune_Workflows/SecurityManagementMenu/~/securityBaselines)
-
-Create a new Microsoft Defender for Endpoint Baseline policy and target all devices.
-
-![intune_security_baselines](./elements/intune_security_baselines.png)
-
-#### [Account Protection](https://endpoint.microsoft.com/#view/Microsoft_Intune_Workflows/SecurityManagementMenu/~/accountprotection)
-
-After enabling LAPS in Entra, create a Windows LAPS profile and apply to all devices.
-![intune_laps_profile](./elements/intune_laps_profile.png)
-
-![intune_laps_profile1](./elements/intune_laps_profile1.png)
+  ![intune_laps_profile1](./elements/intune_laps_profile1.png)
 
 ## M365 Defender
 
-[:link:Portal](https://security.microsoft.com/)
+[:link: Portal](https://security.microsoft.com/)
 
 ### XDR
 
-Enable unified SIEM and XDR.
-![](./elements/defender_unified_xdr_1.png)
+- Enable unified SIEM and XDR.  
+  ![](./elements/defender_unified_xdr_1.png)
 
 ### Email & collaboration
 
-[Policies & Rules -> Threat Policies -> Preset Security Configurations](https://security.microsoft.com/presetSecurityPolicies)
+- Peset Security Configuration Policies
+  - Enable Standard Protection Preset Policies.  
+    ![mdo_protection_policies](./elements/mdo_protection_policies.png)
 
-Enable Standard Protection Preset Policies.
-![mdo_protection_policies](./elements/mdo_protection_policies.png)
+    ![mdo_protection_policies_exo](./elements/mdo_protection_policies_exo.png)
 
-![mdo_protection_policies_exo](./elements/mdo_protection_policies_exo.png)
-
-![mdo_protection_policies_m365](./elements/mdo_protection_policies_m365.png)
+    ![mdo_protection_policies_m365](./elements/mdo_protection_policies_m365.png)
 
 ### MDCA
-
-[:link:Portal](https://security.microsoft.com/cloudapps/settings?tabid=about)
 
 - System
   - IP Address Ranges
@@ -499,169 +495,174 @@ Enable Standard Protection Preset Policies.
 
 ### Advanced Audit
 
-[:link:Portal](https://purview.microsoft.com/audit/auditsearch)
+[:link: Portal](https://purview.microsoft.com/audit/auditsearch)
 
-To enable auditing with the [ExchangeOnlineManagement module](https://www.powershellgallery.com/packages/ExchangeOnlineManagement) in PS5/PS7+
+- Enable Auditing
+  - With the [ExchangeOnlineManagement module](https://www.powershellgallery.com/packages/ExchangeOnlineManagement) in PS5/PS7+
 
-``` powershell
-Enable-OrganizationCustomization
-Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true
-```
+    ``` powershell
+    Enable-OrganizationCustomization
+    Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true
+    ```
 
 ### Device Onboarding
 
-[:link:Portal](https://compliance.microsoft.com/compliancesettings/deviceonboarding)  [:book:Windows](https://learn.microsoft.com/en-us/purview/device-onboarding-overview)  [:book:Mac](https://learn.microsoft.com/en-us/purview/device-onboarding-macos-overview)
+[:link: Portal](https://compliance.microsoft.com/compliancesettings/deviceonboarding)  [:book: Windows](https://learn.microsoft.com/en-us/purview/device-onboarding-overview)  [:book: Mac](https://learn.microsoft.com/en-us/purview/device-onboarding-macos-overview)
 
-1. Enable Windows and Mac device onboarding. This requires MDE.
+- Enable Windows and Mac device onboarding. This requires MDE.
 
 ### Sensitivity Labels
 
 #### Enable labeling for Protected content & PDFs
-- [Enable Sensitivity Labels for Protected Content](https://learn.microsoft.com/en-us/purview/sensitivity-labels-sharepoint-onedrive-files#use-the-microsoft-purview-compliance-portal-to-enable-support-for-sensitivity-labels)
-- [Enable labeling support for PDFs](https://learn.microsoft.com/en-us/purview/sensitivity-labels-sharepoint-onedrive-files#adding-support-for-pdf)
 
-With the [SharePoint Module](https://www.powershellgallery.com/packages/Microsoft.Online.SharePoint.PowerShell) in PowerShell 5
+[:book: Enable Sensitivity Labels for Protected Content](https://learn.microsoft.com/en-us/purview/sensitivity-labels-sharepoint-onedrive-files#use-the-microsoft-purview-compliance-portal-to-enable-support-for-sensitivity-labels)
+[:book: Enable labeling support for PDFs](https://learn.microsoft.com/en-us/purview/sensitivity-labels-sharepoint-onedrive-files#adding-support-for-pdf)
 
-```powershell
-connect-sposervice -url 'https://<tenant>-admin.sharepoint.com/'
-Set-SPOTenant -EnableAIPIntegration $true
-Set-SPOTenant -EnableSensitivityLabelforPDF $true
-```
+- Enable labeling for Protected content & PDFs
+  - Using the [SharePoint Module](https://www.powershellgallery.com/packages/Microsoft.Online.SharePoint.PowerShell) in PowerShell 5
+
+    ```powershell
+    connect-sposervice -url 'https://<tenant>-admin.sharepoint.com/'
+    Set-SPOTenant -EnableAIPIntegration $true
+    Set-SPOTenant -EnableSensitivityLabelforPDF $true
+    ```
 
 #### Enable Labeling for Containers
-In a fresh tenant, there will not be any EntraID group settings configured, so those [need to be created](https://learn.microsoft.com/en-us/entra/identity/users/groups-settings-cmdlets).Then [enable labeling](https://learn.microsoft.com/en-us/entra/identity/users/groups-assign-sensitivity-labels?tabs=microsoft) for containers.  After that, you can [enable the label sync](https://learn.microsoft.com/en-us/purview/sensitivity-labels-teams-groups-sites#how-to-enable-sensitivity-labels-for-containers-and-synchronize-labels).
+In a fresh tenant, there will not be any EntraID group settings configured, so those [need to be created](https://learn.microsoft.com/en-us/entra/identity/users/groups-settings-cmdlets). Then [enable labeling](https://learn.microsoft.com/en-us/entra/identity/users/groups-assign-sensitivity-labels?tabs=microsoft) for containers.  After that, you can [enable the label sync](https://learn.microsoft.com/en-us/purview/sensitivity-labels-teams-groups-sites#how-to-enable-sensitivity-labels-for-containers-and-synchronize-labels).
 
-With the Graph SDK in PS7+
+- With the Graph SDK in PS7+
 
-```PowerShell
-Connect-MgGraph -Scopes "Directory.ReadWrite.All"
-$TemplateId = (Get-MgBetaDirectorySettingTemplate | where { $_.DisplayName -eq "Group.Unified" }).Id
-$params = @{
-   templateId = "$TemplateId"
-   values = @(
-      @{
-         name = "EnableMIPLabels"
-         value = "True"
-      }
-   )
-}
-New-MgBetaDirectorySetting -BodyParameter $params
-```
+    ```PowerShell
+    Connect-MgGraph -Scopes "Directory.ReadWrite.All"
+    $TemplateId = (Get-MgBetaDirectorySettingTemplate | where { $_.DisplayName -eq "Group.Unified" }).Id
+    $params = @{
+       templateId = "$TemplateId"
+       values = @(
+          @{
+             name = "EnableMIPLabels"
+             value = "True"
+          }
+       )
+    }
+    New-MgBetaDirectorySetting -BodyParameter $params
+    ```
 
-Then, with the [ExchangeOnlineManagement module](https://www.powershellgallery.com/packages/ExchangeOnlineManagement) in PS5/PS7+
+- With the [ExchangeOnlineManagement module](https://www.powershellgallery.com/packages/ExchangeOnlineManagement) in PS5/PS7+
 
-```PowerShell
-Connect-IPPSSession
-Execute-AzureAdLabelSync
-```
+    ```PowerShell
+    Connect-IPPSSession
+    Execute-AzureAdLabelSync
+    ```
 
 #### Enable co-authoring for Encrypted Files
+
 This can be [done in the portal](https://learn.microsoft.com/en-us/purview/sensitivity-labels-coauthoring#how-to-enable-co-authoring-for-files-with-sensitivity-labels), or via PowerShell.
 
-With the [ExchangeOnlineManagement module](https://www.powershellgallery.com/packages/ExchangeOnlineManagement) in PS5/PS7+
+- With the [ExchangeOnlineManagement module](https://www.powershellgallery.com/packages/ExchangeOnlineManagement) in PS5/PS7+
 
-```PowerShell
-Connect-IPPSSession
-Set-PolicyConfig -EnableLabelCoauth:$true
-```
+    ```PowerShell
+    Connect-IPPSSession
+    Set-PolicyConfig -EnableLabelCoauth:$true
+    ```
 
 ### DLP
 
 #### Endpoint DLP
 
 ##### Settings
+
 [:link: Portal](https://compliance.microsoft.com/datalossprevention/endpointdlpsettings)
 [:blue_book: Docs](https://learn.microsoft.com/en-us/purview/dlp-configure-endpoint-settings)
 
 In Settings, change the following:
+
 - Advanced classification scanning and protection: `On`
 
 ##### Browser Extension
-
-
 
 ### MIP Scanner
 [:link: Portal](https://compliance.microsoft.com/compliancesettings/scanner_onboarding)
 [:blue_book: Docs](https://learn.microsoft.com/en-us/purview/deploy-scanner)
 
-Prerequisites
+Prerequisite
+
 - Service account in AD, exclude from MFA registration and CAs
 - SQL server for the scanner, as well as a windows server.
 
 Deployment
-1. Create a Scanner Cluster
-   ![](./elements/purview_mip_scanner_cluster.png)
-2. Create a Content Scan Job. Be sure to disable any of the auto options - this will just be for scanning.
-   ![](./elements/purview_mip_scanner_scan_job.png)
 
+- Create a Scanner Cluster  
+  ![](./elements/purview_mip_scanner_cluster.png)
+- Create a Content Scan Job. Be sure to disable any of the auto options - this will just be for scanning.  
+  ![](./elements/purview_mip_scanner_scan_job.png)
 
 #### Exact Data Match
-[:link: Portal](https://compliance.microsoft.com/insiderriskmgmt?viewid=policies)  
-[:blue_book: Docs](https://learn.microsoft.com/en-us/purview/insider-risk-management-policies)
+
+[:link: Portal](https://compliance.microsoft.com/insiderriskmgmt?viewid=policies)  [:blue_book: Docs](https://learn.microsoft.com/en-us/purview/insider-risk-management-policies)
 
 ##### EDM SIT
-1. Create a new EDM SIT. Since I work in healthcare, I typically use [Synthea](https://github.com/synthetichealth/synthea) to generate patient records. We do have [sample industry files](https://learn.microsoft.com/en-us/purview/sit-get-started-exact-data-match-export-data#sample-file-templates) you can use. 
-2. Make note of the datastrore name when you finish the EDM wizard. You'll need it for the EDM uploader.
+
+- Create a new EDM SIT. Since I work in healthcare, I typically use [Synthea](https://github.com/synthetichealth/synthea) to generate patient records. We do have [sample industry files](https://learn.microsoft.com/en-us/purview/sit-get-started-exact-data-match-export-data#sample-file-templates) you can use. 
+- Make note of the datastrore name when you finish the EDM wizard. You'll need it for the EDM uploader.
 
 ##### EDM Uploader Tool
-1. Create a service account for the EDM upload agents to run as.
-2. Create a EntraID security group named `EDM_DataUploaders` and add the service account to it.
-3. Install the EDM upload tool to `c:\EDM`
-4. Place sample data in `c:\EDM\Data`
-5. Save the schema `.\EdmUploadAgent.exe /SaveSchema /DataStoreName your_data_store_name /OutputDir c:\edm\data`
-6. Create `c:\EDM\hash`
-7. Upload the data `.\EdmUploadAgent.exe /uploaddata /datastorename your_data_store_name /datafile C:\edm\data\your_data.csv /hashlocation c:\edm\hash /schema C:\edm\data\your_data_store_name.xml /allowedbadlinespercentage 5`
 
+- Create a service account for the EDM upload agents to run as.
+- Create a EntraID security group named `EDM_DataUploaders` and add the service account to it.
+- Install the EDM upload tool to `c:\EDM`
+- Place sample data in `c:\EDM\Data`
+- Save the schema `.\EdmUploadAgent.exe /SaveSchema /DataStoreName your_data_store_name /OutputDir c:\edm\data`
+- Create `c:\EDM\hash`
+- Upload the data `.\EdmUploadAgent.exe /uploaddata /datastorename your_data_store_name /datafile C:\edm\data\your_data.csv /hashlocation c:\edm\hash /schema C:\edm\data\your_data_store_name.xml /allowedbadlinespercentage 5`
 
 ### Insider Risk Management
 
 #### Roles
-[:link: Portal](https://compliance.microsoft.com/compliancecenterpermissions)  
-[:blue_book: Docs](https://learn.microsoft.com/en-us/purview/insider-risk-management-configure#step-1-required-enable-permissions-for-insider-risk-management)  
 
-Add your account to the `Insider Risk Management` role. 
+[:link: Portal](https://compliance.microsoft.com/compliancecenterpermissions)  [:blue_book: Docs](https://learn.microsoft.com/en-us/purview/insider-risk-management-configure#step-1-required-enable-permissions-for-insider-risk-management)  
+
+Add your account to the `Insider Risk Management` role.
+
 #### Browser Activity Plugins
+
 1. Deploy the Edge profile via Intune as described [here](https://learn.microsoft.com/en-us/purview/insider-risk-management-browser-support#option-2-intune-setup-for-edge)
 2. Deploy the Chrome profile via Intune as described [here](https://learn.microsoft.com/en-us/purview/insider-risk-management-browser-support#option-2-intune-setup-for-chrome)
 
 #### Settings
-[:link: Portal](https://purview.microsoft.com/settings/application-settings/insiderriskmgmt)  
-[:blue_book: Docs](https://learn.microsoft.com/en-us/purview/insider-risk-management-settings)
+
+[:link: Portal](https://purview.microsoft.com/settings/application-settings/insiderriskmgmt)  [:blue_book: Docs](https://learn.microsoft.com/en-us/purview/insider-risk-management-settings)
 
 - Analytics
-	- Toggle analytics on
+  - Toggle analytics on
 - Data sharing
-	- Enable share data with Defender XDR
+  - Enable share data with Defender XDR
 - Policy indicators
-	- Select all indicators under the following categories
-		- Office
-		- Microsoft Defender for Cloud Apps
-		- Cumulative exfiltration detection
-		- Risk score boosters
-		- Generative AI Apps
-			- Microsoft Copilot Experiences
-		- Microsoft Entra
-			- Risk Detection indicators
-
+  - Select all indicators under the following categories
+    - Office
+    - Microsoft Defender for Cloud Apps
+    - Cumulative exfiltration detection
+    - Risk score boosters
+    - Generative AI Apps
+      - Microsoft Copilot Experiences
+    - Microsoft Entra
+      - Risk Detection indicators
 
 ##### Analytics
+
 - Toggle analytics on
 
-
-
 ##### Policy Indicators
+
 - Select all indicators under the following categories
-	- Office
-	- Device
-	- Microsoft Defender for Endpoint
-	- Risky Browsing
-	- Microsoft Defender for Cloud Apps
-
-
+  - Office
+  - Device
+  - Microsoft Defender for Endpoint
+  - Risky Browsing
+  - Microsoft Defender for Cloud Apps
 
 #### Polices
-[:link: Portal](https://compliance.microsoft.com/insiderriskmgmt?viewid=policies)  
-[:blue_book: Docs](https://learn.microsoft.com/en-us/purview/insider-risk-management-policies)
+
+[:link: Portal](https://compliance.microsoft.com/insiderriskmgmt?viewid=policies)  [:blue_book: Docs](https://learn.microsoft.com/en-us/purview/insider-risk-management-policies)
 
 1. Create a Data Leaks policy from the template
    ![](./elements/purview_irm_policies_data_leaks_1.png)
@@ -671,5 +672,3 @@ Add your account to the `Insider Risk Management` role.
 4. For triggering events, choose `User performs an exfiltration activity`
 5. For thresholds, choose `Apply built-in thresholds.`
 6. For indicators, leave the default ones checked.
-7. 
-
