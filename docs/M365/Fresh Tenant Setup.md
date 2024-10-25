@@ -580,6 +580,14 @@ In Settings, change the following:
 
 ##### Browser Extension
 
+!!! info
+    Currently, the Chrome extension uses the v2 Manifest. This will update later this year to v3.
+
+- Set the v2 Manifest setting via Intune
+- Download the admx zip from [here](https://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip) and the Update Manager policy from [here](https://dl.google.com/dl/update2/enterprise/googleupdateadmx.zip)
+- 
+
+
 ### MIP Scanner
 [:link: Portal](https://compliance.microsoft.com/compliancesettings/scanner_onboarding)
 [:blue_book: Docs](https://learn.microsoft.com/en-us/purview/deploy-scanner)
@@ -672,3 +680,6 @@ Add your account to the `Insider Risk Management` role.
 4. For triggering events, choose `User performs an exfiltration activity`
 5. For thresholds, choose `Apply built-in thresholds.`
 6. For indicators, leave the default ones checked.
+
+!!! Warning "Work in Progress"
+    This section is not complete.
