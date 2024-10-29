@@ -578,16 +578,6 @@ In Settings, change the following:
 
 - Advanced classification scanning and protection: `On`
 
-##### Browser Extension
-
-!!! info
-    Currently, the Chrome extension uses the v2 Manifest. This will update later this year to v3.
-
-- Set the v2 Manifest setting via Intune
-- Download the admx zip from [here](https://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip) and the Update Manager policy from [here](https://dl.google.com/dl/update2/enterprise/googleupdateadmx.zip)
-- 
-
-
 ### MIP Scanner
 [:link: Portal](https://compliance.microsoft.com/compliancesettings/scanner_onboarding)
 [:blue_book: Docs](https://learn.microsoft.com/en-us/purview/deploy-scanner)
@@ -611,7 +601,7 @@ Deployment
 ##### EDM SIT
 
 - Create a new EDM SIT. Since I work in healthcare, I typically use [Synthea](https://github.com/synthetichealth/synthea) to generate patient records. We do have [sample industry files](https://learn.microsoft.com/en-us/purview/sit-get-started-exact-data-match-export-data#sample-file-templates) you can use. 
-- Make note of the datastrore name when you finish the EDM wizard. You'll need it for the EDM uploader.
+- Make note of the datastore name when you finish the EDM wizard. You'll need it for the EDM uploader.
 
 ##### EDM Uploader Tool
 
