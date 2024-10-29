@@ -108,7 +108,7 @@ This will, however, miss the last MRN, as it doesn't have a MRN following it on 
 
 ### Relaxing proximity
 
-This technique, featured on the [Compliance CxE site](https://microsoft.github.io/ComplianceCxE/), creates an custom SIT with settings that will increase matches by assuming that low confidence matches without keywords will be counted as high confidence as long as there are high confidence matches as well of the same type. This works well for table based data, where it's generally safe to assume that the column contains data that matches.
+This technique, featured on the [Compliance CxE site](https://microsoft.github.io/ComplianceCxE/), creates an custom SIT with settings that will increase matches by assuming that if there are 9 or more low confidence matches without keywords then those will be counted as high confidence as long as there are high confidence matches as well of the same type. This works well for table based data, where it's generally safe to assume that the column contains data that matches.
 
 In our example from above, our green MRNs are high, and the red MRNs will also be assumed to be high.
 
