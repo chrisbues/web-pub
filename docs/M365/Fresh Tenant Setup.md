@@ -6,6 +6,11 @@ publish: true
 ---
 These are the steps I typically take to set up a fresh M365 E5 tenant.
 
+
+> [!INFO] Work in Progress
+> This is very much a continuous work in progress. I publish changes as I go. Screenshots might be out of date.
+
+
 !!! info "Work in Progress"
     This is very much a continuous work in progress. I publish changes as I go. Screenshots might be out of date.
 
@@ -186,6 +191,13 @@ Click Activate to enable GSA in your tenant
 1. Enable the [Microsoft Profile](https://entra.microsoft.com/#view/Microsoft_Azure_Network_Access/ForwardingProfile.ReactView)  
     ![Interface with traffic profiles for Microsoft and Internet access, including policy and user assignment options.](./elements/entra_gsa_enable_ms_profile.png)
 2. Download the [GSA Client](https://entra.microsoft.com/#view/Microsoft_Azure_Network_Access/Clients.ReactView) and deploy to Windows devices.
+
+## Active Directory
+
+Deploy 3 VMs
+- 2 Domain Controllers running 2022
+- 1 2022 Server for Entra Cloud Sync
+
 
 ## Intune
 
@@ -564,6 +576,13 @@ This can be [done in the portal](https://learn.microsoft.com/en-us/purview/sensi
     Connect-IPPSSession
     Set-PolicyConfig -EnableLabelCoauth:$true
     ```
+
+#### Implement Secure by Default Labeling
+
+Follow the guide [here](https://learn.microsoft.com/en-us/purview/deploymentmodels/depmod-securebydefault-intro) 
+
+
+
 
 ### DLP
 
