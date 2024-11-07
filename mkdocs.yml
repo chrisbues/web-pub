@@ -52,6 +52,7 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.details
   - admonition
+  - nl2br
   - attr_list
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
@@ -62,6 +63,7 @@ plugins:
   #- material/meta
   - tags
   - page-to-pdf
+  - callouts
 
 extra:
   social:
