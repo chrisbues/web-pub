@@ -6,16 +6,11 @@ publish: true
 ---
 These are the steps I typically take to set up a fresh M365 E5 tenant.
 
-
 > [!INFO] Work in Progress
 > This is very much a continuous work in progress. I publish changes as I go. Screenshots might be out of date.
 
-
-!!! info "Work in Progress"
-    This is very much a continuous work in progress. I publish changes as I go. Screenshots might be out of date.
-
-!!! warning "Use at your own risk"
-     These are my personal steps. This should not be construed as official guidance. Always refer to the official Microsoft documentation available at [learn.microsoft.com](https://learn.microsoft.com/)
+> [!WARNING] Use at your own risk
+> These are my personal steps. This should not be construed as official guidance. Always refer to the official Microsoft documentation available at [learn.microsoft.com](https://learn.microsoft.com/)
 
 ## Entra
 
@@ -580,8 +575,6 @@ This can be [done in the portal](https://learn.microsoft.com/en-us/purview/sensi
 #### Implement Secure by Default Labeling
 
 Follow the guide [here](https://learn.microsoft.com/en-us/purview/deploymentmodels/depmod-securebydefault-intro) 
-
-
 
 
 ### DLP
