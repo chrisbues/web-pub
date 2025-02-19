@@ -682,9 +682,7 @@ Deployment
 
 1. Turn on adaptive protection with the quick setup option
     ![](./elements/purview_irm_adaptive_protection_quick_setup.png)
-2. Wait for that to process. Once complete, go back and enable Adaptive Protection under Adaptive Protection settings
-    ![](./elements/purview_irm_adaptive_protection_enable.png)
-
+2. 
 #### Polices
 
 [:link: Portal](https://compliance.microsoft.com/insiderriskmgmt?viewid=policies)  [:blue_book: Docs](https://learn.microsoft.com/en-us/purview/insider-risk-management-policies)

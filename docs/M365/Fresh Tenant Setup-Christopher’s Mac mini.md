@@ -626,8 +626,6 @@ Deployment
 
 ### Insider Risk Management
 
-!!! Warning "Work in Progress"
-    This section is not complete.
 #### Roles
 
 [:link: Portal](https://compliance.microsoft.com/compliancecenterpermissions)  [:blue_book: Docs](https://learn.microsoft.com/en-us/purview/insider-risk-management-configure#step-1-required-enable-permissions-for-insider-risk-management)  
@@ -643,6 +641,9 @@ Deployment
 #### HR Connector
 
 1. Create an Entra App Registration with Client Secret 
+
+
+
 
 #### Settings
 
@@ -676,15 +677,6 @@ Deployment
   - Risky Browsing
   - Microsoft Defender for Cloud Apps
 
-#### Adaptive Protection
-
-:link:[Portal](https://purview.microsoft.com/insiderriskmgmt/dynamicriskprevention)
-
-1. Turn on adaptive protection with the quick setup option
-    ![](./elements/purview_irm_adaptive_protection_quick_setup.png)
-2. Wait for that to process. Once complete, go back and enable Adaptive Protection under Adaptive Protection settings
-    ![](./elements/purview_irm_adaptive_protection_enable.png)
-
 #### Polices
 
 [:link: Portal](https://compliance.microsoft.com/insiderriskmgmt?viewid=policies)  [:blue_book: Docs](https://learn.microsoft.com/en-us/purview/insider-risk-management-policies)
@@ -698,8 +690,7 @@ Deployment
 5. For thresholds, choose `Apply built-in thresholds.`
 6. For indicators, leave the default ones checked.
 
-### Communication Compliance
+!!! Warning "Work in Progress"
+    This section is not complete.
 
-:link:[Portal](https://purview.microsoft.com/settings/application-settings/cc)
-
-- Grant Teams meeting recording access.
+### 
