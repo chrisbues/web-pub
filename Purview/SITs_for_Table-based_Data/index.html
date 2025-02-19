@@ -1,0 +1,996 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="My digital garden">
+      
+      
+      
+        <link rel="canonical" href="https://www.chrisbues.com/Purview/SITs_for_Table-based_Data/">
+      
+      
+        <link rel="prev" href="../../M365/Fresh_Tenant_Setup/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>SITs for Table-based Data - Chris Bues</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../style.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-4EP6NGCTL3"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-4EP6NGCTL3",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-4EP6NGCTL3",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#proximity" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Chris Bues" class="md-header__button md-logo" aria-label="Chris Bues" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Chris Bues
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SITs for Table-based Data
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome to my Digital Garden
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../M365/Fresh_Tenant_Setup/" class="md-tabs__link">
+          
+  
+    
+  
+  M365
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+    
+  
+  Purview
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Chris Bues" class="md-nav__button md-logo" aria-label="Chris Bues" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Chris Bues
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to my Digital Garden
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    M365
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            M365
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../M365/Fresh_Tenant_Setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fresh Tenant Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Purview
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Purview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SITs for Table-based Data
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    SITs for Table-based Data
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#proximity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proximity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keyword-removal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keyword removal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#increasing-proximity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Increasing proximity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-lookahead" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding a lookahead
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relaxing-proximity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relaxing proximity
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relaxing proximity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-relaxed-proximity-sit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a Relaxed Proximity SIT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#proximity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proximity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keyword-removal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keyword removal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#increasing-proximity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Increasing proximity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-lookahead" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding a lookahead
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relaxing-proximity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relaxing proximity
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relaxing proximity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-relaxed-proximity-sit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a Relaxed Proximity SIT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset"><a class="md-content__button md-icon" download href="SITs_for_Table-based_Data.pdf" title="PDF"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 10.5h1v3h-1v-3m-5 1h1v-1H7v1M20 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2M9.5 10.5A1.5 1.5 0 0 0 8 9H5.5v6H7v-2h1a1.5 1.5 0 0 0 1.5-1.5v-1m5 0A1.5 1.5 0 0 0 13 9h-2.5v6H13a1.5 1.5 0 0 0 1.5-1.5v-3m4-1.5h-3v6H17v-2h1.5v-1.5H17v-1h1.5V9z"></path></svg></a>
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">Purview</span>
+      
+    
+  </nav>
+
+
+
+  <h1>SITs for Table-based Data</h1>
+
+<h2 id="proximity">Proximity<a class="headerlink" href="#proximity" title="Permanent link">&para;</a></h2>
+<p>With Sensitive Information Types in Purview, the supporting elements typically are set to be within 300 characters of the match. This works well for text documents and emails, but is less effective for table-based data like spreadsheets or csv files.</p>
+<p>For example, let's take a fictitious Medical Record Number. This example is a variable length number with no other formatting, and no padding. This is fairly common, especially with mixed MRN systems.</p>
+<p>127528819: 6-9 digits</p>
+<p>The corresponding regex to find this MRN is this:<br />
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>\b\d{6,9}\b
+</span></code></pre></div></p>
+<p>The custom SIT definition looks like this:</p>
+<p><strong>Pattern #1</strong></p>
+<ul>
+<li>Confidence: High</li>
+<li>Regular Expression: <code>\b\d{6,9}\b</code></li>
+<li>Character proximity: 300 characters (default)</li>
+<li>Supporting elements: case insensitive keywords<ul>
+<li>MRN, Medical Record Number, Record Number</li>
+</ul>
+</li>
+</ul>
+<p><strong>Pattern #2</strong></p>
+<ul>
+<li>Confidence: Low</li>
+<li>Regular Expression: <code>\b\d{6,9}\b</code></li>
+<li>Character proximity: 300 characters (default)</li>
+<li>Supporting elements: none</li>
+</ul>
+<p><strong>Test Data</strong><br />
+Our test data is a simple, fake extract from a MRN system. Note that MRN is the first column, and the column name is one of our keywords (mrn).</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&quot;mrn&quot;,&quot;firstname&quot;,&quot;lastname&quot;,&quot;dob&quot;,&quot;address&quot;,&quot;city&quot;,&quot;state&quot;,&quot;zip&quot;,&quot;phone&quot;,&quot;email&quot;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>&quot;492338213&quot;,&quot;Kelly&quot;,&quot;Pratt&quot;,&quot;2001-09-28&quot;,&quot;80947 Nelson Estates Apt. 763&quot;,&quot;Kathyfort&quot;,&quot;HI&quot;,&quot;66442&quot;,&quot;+1-578-586-3745x48021&quot;,&quot;wking@example.com&quot;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>&quot;789241276&quot;,&quot;John&quot;,&quot;Arnold&quot;,&quot;1955-10-28&quot;,&quot;03741 Sanchez Shore&quot;,&quot;South Anthonyview&quot;,&quot;MN&quot;,&quot;56561&quot;,&quot;+1-988-725-1788x1975&quot;,&quot;michael33@example.org&quot;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>&quot;719643833&quot;,&quot;Steven&quot;,&quot;Wilson&quot;,&quot;1948-06-19&quot;,&quot;341 Brooks Courts&quot;,&quot;Lake Candiceside&quot;,&quot;ND&quot;,&quot;92691&quot;,&quot;001-933-368-7396x72128&quot;,&quot;yclark@example.net&quot;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>&quot;913581370&quot;,&quot;Laura&quot;,&quot;Mitchell&quot;,&quot;1951-11-25&quot;,&quot;8421 Kelley Islands Suite 633&quot;,&quot;Kramerfort&quot;,&quot;NM&quot;,&quot;30252&quot;,&quot;760.462.3509x7056&quot;,&quot;shawn66@example.org&quot;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>&quot;175729777&quot;,&quot;Sean&quot;,&quot;Lewis&quot;,&quot;1943-11-17&quot;,&quot;3140 Hunt Track Apt. 116&quot;,&quot;Jamesview&quot;,&quot;CO&quot;,&quot;86702&quot;,&quot;001-964-653-2716x1838&quot;,&quot;aliciawilson@example.net&quot;
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>&quot;76761344&quot;,&quot;Paul&quot;,&quot;Booth&quot;,&quot;1936-09-17&quot;,&quot;3297 Juan Field Apt. 857&quot;,&quot;Tanyafurt&quot;,&quot;MT&quot;,&quot;80739&quot;,&quot;358.612.7934x4561&quot;,&quot;victoriawilson@example.com&quot;
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>&quot;286086254&quot;,&quot;Samantha&quot;,&quot;Pham&quot;,&quot;2018-08-23&quot;,&quot;600 Kimberly Glen Suite 866&quot;,&quot;Lake Alexanderville&quot;,&quot;NE&quot;,&quot;64307&quot;,&quot;350-511-9743x968&quot;,&quot;michael35@example.net&quot;
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>&quot;949601932&quot;,&quot;Ethan&quot;,&quot;Berry&quot;,&quot;1933-02-14&quot;,&quot;2593 Sandoval Pine&quot;,&quot;Traceyside&quot;,&quot;IA&quot;,&quot;79382&quot;,&quot;+1-682-236-0383x226&quot;,&quot;natasha45@example.org&quot;
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>&quot;206072596&quot;,&quot;Sharon&quot;,&quot;Davis&quot;,&quot;2004-12-03&quot;,&quot;444 Mark Station Apt. 787&quot;,&quot;Lake Matthewville&quot;,&quot;GU&quot;,&quot;87599&quot;,&quot;482.353.2044x885&quot;,&quot;christine42@example.com&quot;
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>&quot;586966326&quot;,&quot;Patricia&quot;,&quot;Roberts&quot;,&quot;1952-01-18&quot;,&quot;9939 Jones Flats&quot;,&quot;Sullivanbury&quot;,&quot;MT&quot;,&quot;41356&quot;,&quot;969-900-3288x749&quot;,&quot;silvaronald@example.com&quot;
+</span></code></pre></div>
+<p><strong>Testing the SIT</strong><br />
+Running this test data though the tester on the SIT definition, and you'll get something along the lines of this:</p>
+<p>Low - 10 unique matches</p>
+<table>
+<thead>
+<tr>
+<th>Matches</th>
+<th>Supporting Elements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>206072596</td>
+<td>-</td>
+</tr>
+<tr>
+<td>286086254</td>
+<td>-</td>
+</tr>
+<tr>
+<td>492338213</td>
+<td>"mrn"</td>
+</tr>
+<tr>
+<td>789241276</td>
+<td>"mrn"</td>
+</tr>
+<tr>
+<td>76761344</td>
+<td>-</td>
+</tr>
+<tr>
+<td>949601932</td>
+<td>-</td>
+</tr>
+<tr>
+<td>719643833</td>
+<td>-</td>
+</tr>
+<tr>
+<td>175729777</td>
+<td>-</td>
+</tr>
+<tr>
+<td>913581370</td>
+<td>-</td>
+</tr>
+<tr>
+<td>586966326</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>High - 2 unique matches</p>
+<table>
+<thead>
+<tr>
+<th>Matches</th>
+<th>Supporting Elements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>492338213</td>
+<td>"mrn"</td>
+</tr>
+<tr>
+<td>789241276</td>
+<td>"mrn"</td>
+</tr>
+</tbody>
+</table>
+<p>So why did the high only match two? Proximity. Think of CSVs as long run-on sentences. In our test data data above, 300 characters from "mrn" in the first line is around the middle of the third line. In our test data, MRNs that would match are highlighted in green, and those that are 300+ characters away from <code>mrn</code> in the first row won't match because of the distance between the actual MRN and the keyword mrn.</p>
+<p><img alt="" src="../elements/purview_sit_distance-2.png" /></p>
+<h2 id="techniques">Techniques<a class="headerlink" href="#techniques" title="Permanent link">&para;</a></h2>
+<p>There are multiple ways to deal with this issue.</p>
+<h3 id="keyword-removal">Keyword removal<a class="headerlink" href="#keyword-removal" title="Permanent link">&para;</a></h3>
+<p>Creating a custom SIT based on a existing SIT, then removing the keyword requirements is one way to address the proximity requirements. The downside to this is an increase in false positives, especially in something like our MRN, where it's just nine digit number.</p>
+<h3 id="increasing-proximity">Increasing proximity<a class="headerlink" href="#increasing-proximity" title="Permanent link">&para;</a></h3>
+<p>You can increase the proximity value, or select anywhere in the document. This can work, however, this does increase the false positive rate, and also increases the chance of the DCS scan timing out in larger documents.</p>
+<p><img alt="" src="../elements/purview_sit_proximity_unlimited.png" /></p>
+<h3 id="adding-a-lookahead">Adding a lookahead<a class="headerlink" href="#adding-a-lookahead" title="Permanent link">&para;</a></h3>
+<p>Instead of the regex matching just one instance, incorporate positive lookahead into the MRN regex that looks for another instance of a MRN on the next line.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&quot;\d{6,9}&quot;(?=.*\n.*&quot;\d{6,9}&quot;)
+</span></code></pre></div>
+<p>This will, however, miss the last MRN, as it doesn't have a MRN following it on the next line.<br />
+<img alt="" src="../elements/purview_sit_regex_lookahead.png" /></p>
+<h3 id="relaxing-proximity">Relaxing proximity<a class="headerlink" href="#relaxing-proximity" title="Permanent link">&para;</a></h3>
+<p>This technique, featured on the <a href="https://microsoft.github.io/ComplianceCxE/">Compliance CxE site</a>, creates an custom SIT with settings that will increase matches by assuming that if there are 9 or more low confidence matches without keywords then those will be counted as high confidence as long as there are high confidence matches as well of the same type. This works well for table based data, where it's generally safe to assume that the column contains data that matches.</p>
+<p>In our example from above, our green MRNs are high, and the red MRNs will also be assumed to be high.</p>
+<p><img alt="" src="../elements/purview_sit_distance_relax.png" /></p>
+<h4 id="creating-a-relaxed-proximity-sit">Creating a Relaxed Proximity SIT<a class="headerlink" href="#creating-a-relaxed-proximity-sit" title="Permanent link">&para;</a></h4>
+<ol>
+<li>We'll make a copy of our MRN sit in the UI.<br />
+<img alt="" src="../elements/purview_copy_sit-1.png" /></li>
+<li>
+<p>Edit the copied sit. Duplicate the high confidence pattern (with keywords), remove the keywords and lower the confidence.<br />
+<img alt="" src="../elements/purview_sit_relax_proximity_duplicate_pattern.png" /></p>
+</li>
+<li>
+<p>Connect to the Compliance PowerShell.<br />
+    <div class="language-Powershell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">Connect-IPPSession</span>
+</span></code></pre></div></p>
+</li>
+<li>Export the Custom Rule Pack to xml. The rule pack containing any duplicated base SITs is always called Microsoft.SCCManaged.CustomRulePack, so the export command would be this:<br />
+    <div class="language-Powershell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">$rulepack</span> <span class="p">=</span> <span class="nb">Get-DlpSensitiveInformationTypeRulePackage</span> <span class="n">-Identity</span> <span class="s2">&quot;Microsoft.SCCManaged.CustomRulePack&quot;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="no">[System.IO.File]</span><span class="p">::</span><span class="n">WriteAllBytes</span><span class="p">(</span><span class="s1">&#39;purview_custom_rulepack.xml&#39;</span><span class="p">,</span> <span class="nv">$rulepack</span><span class="p">.</span><span class="n">SerializedClassificationRuleCollection</span><span class="p">)</span>
+</span></code></pre></div></li>
+<li>Edit the XML in an editor such as VS Code</li>
+<li>Locate the rules element for the SIT you created earlier. Actual definitions are abstracted from the local-specific descriptions, so look in the <code>&lt;LocalizedStrings&gt;</code> find the names for the SITs and their matching guid.  <img alt="" src="../elements/purview_sit_rulepack.png" /></li>
+<li>Change relaxProximity from false to true and save.<br />
+    <div class="language-xml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&lt;Entity</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;f15a78fd-0cfe-4d19-a227-77eb3aa14ae6&quot;</span><span class="w"> </span><span class="na">patternsProximity=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">recommendedConfidence=</span><span class="s">&quot;75&quot;</span><span class="w"> </span><span class="na">relaxProximity=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></div></li>
+<li>Upload the rulepack:<br />
+    <div class="language-powershell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">Set-DlpSensitiveInformationTypeRulePackage</span> <span class="n">-FileData</span> <span class="p">(</span><span class="no">[System.IO.File]</span><span class="p">::</span><span class="n">ReadAllBytes</span><span class="p">(</span><span class="s2">&quot;.\purview_custom_rulepack.xml&quot;</span><span class="p">))</span>
+</span></code></pre></div><br />
+    Answer Yes when prompted.</li>
+</ol>
+<p>After uploading, go back to the portal and test the SIT again with the same data as before. You'll notice that the matches that previously were lower confidence are included in the high, even though they do not have the <code>mrn</code> keyword within 300 characters.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../M365/Fresh_Tenant_Setup/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Fresh Tenant Setup">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Fresh Tenant Setup
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://fosstodon.org/@squidfunk" target="_blank" rel="noopener" title="fosstodon.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/chrisbues" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.indexes", "navigation.tracking", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "content.code.select"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
