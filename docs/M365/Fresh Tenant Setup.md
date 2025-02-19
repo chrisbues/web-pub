@@ -576,7 +576,6 @@ This can be [done in the portal](https://learn.microsoft.com/en-us/purview/sensi
 
 Follow the guide [here](https://learn.microsoft.com/en-us/purview/deploymentmodels/depmod-securebydefault-intro) 
 
-
 ### DLP
 
 #### Endpoint DLP
@@ -617,26 +616,33 @@ Deployment
 
 ##### EDM Uploader Tool
 
-- Create a service account for the EDM upload agents to run as.
-- Create a EntraID security group named `EDM_DataUploaders` and add the service account to it.
-- Install the EDM upload tool to `c:\EDM`
-- Place sample data in `c:\EDM\Data`
-- Save the schema `.\EdmUploadAgent.exe /SaveSchema /DataStoreName your_data_store_name /OutputDir c:\edm\data`
-- Create `c:\EDM\hash`
-- Upload the data `.\EdmUploadAgent.exe /uploaddata /datastorename your_data_store_name /datafile C:\edm\data\your_data.csv /hashlocation c:\edm\hash /schema C:\edm\data\your_data_store_name.xml /allowedbadlinespercentage 5`
+1. Create a service account for the EDM upload agents to run as.
+2. Create a EntraID security group named `EDM_DataUploaders` and add the service account to it.
+3. Install the EDM upload tool to `c:\EDM`
+4. Place sample data in `c:\EDM\Data`
+5. Save the schema `.\EdmUploadAgent.exe /SaveSchema /DataStoreName your_data_store_name /OutputDir c:\edm\data`
+6. Create `c:\EDM\hash`
+7. Upload the data `.\EdmUploadAgent.exe /uploaddata /datastorename your_data_store_name /datafile C:\edm\data\your_data.csv /hashlocation c:\edm\hash /schema C:\edm\data\your_data_store_name.xml /allowedbadlinespercentage 5`
 
 ### Insider Risk Management
 
+!!! Warning "Work in Progress"
+    This section is not complete.
 #### Roles
 
 [:link: Portal](https://compliance.microsoft.com/compliancecenterpermissions)  [:blue_book: Docs](https://learn.microsoft.com/en-us/purview/insider-risk-management-configure#step-1-required-enable-permissions-for-insider-risk-management)  
 
-Add your account to the `Insider Risk Management` role.
+- Add your account to the `Insider Risk Management` role.
+- Create a role group called `Data Connector Admins`, add the `Data Connector Admin` role to it and add your account to the role group.
 
 #### Browser Activity Plugins
 
-1. Deploy the Edge profile via Intune as described [here](https://learn.microsoft.com/en-us/purview/insider-risk-management-browser-support#option-2-intune-setup-for-edge)
-2. Deploy the Chrome profile via Intune as described [here](https://learn.microsoft.com/en-us/purview/insider-risk-management-browser-support#option-2-intune-setup-for-chrome)
+- Deploy the Edge profile via Intune as described [here](https://learn.microsoft.com/en-us/purview/insider-risk-management-browser-support#option-2-intune-setup-for-edge)
+- Deploy the Chrome profile via Intune as described [here](https://learn.microsoft.com/en-us/purview/insider-risk-management-browser-support#option-2-intune-setup-for-chrome)
+
+#### HR Connector
+
+1. Create an Entra App Registration with Client Secret 
 
 #### Settings
 
@@ -670,6 +676,15 @@ Add your account to the `Insider Risk Management` role.
   - Risky Browsing
   - Microsoft Defender for Cloud Apps
 
+#### Adaptive Protection
+
+:link:[Portal](https://purview.microsoft.com/insiderriskmgmt/dynamicriskprevention)
+
+1. Turn on adaptive protection with the quick setup option
+    ![](./elements/purview_irm_adaptive_protection_quick_setup.png)
+2. Wait for that to process. Once complete, go back and enable Adaptive Protection under Adaptive Protection settings
+    ![](./elements/purview_irm_adaptive_protection_enable.png)
+
 #### Polices
 
 [:link: Portal](https://compliance.microsoft.com/insiderriskmgmt?viewid=policies)  [:blue_book: Docs](https://learn.microsoft.com/en-us/purview/insider-risk-management-policies)
@@ -683,5 +698,8 @@ Add your account to the `Insider Risk Management` role.
 5. For thresholds, choose `Apply built-in thresholds.`
 6. For indicators, leave the default ones checked.
 
-!!! Warning "Work in Progress"
-    This section is not complete.
+### Communication Compliance
+
+:link:[Portal](https://purview.microsoft.com/settings/application-settings/cc)
+
+- Grant Teams meeting recording access.
