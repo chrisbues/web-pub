@@ -117,9 +117,10 @@ In our example from above, our green MRNs are high, and the red MRNs will also b
 #### Creating a Relaxed Proximity SIT
 
 1. We'll make a copy of our MRN sit in the UI.
-
     ![](./elements/purview_copy_sit-1.png)
-2. Edit the copied sit.
+2. Edit the copied sit. Duplicate the high confidence pattern (with keywords), remove the keywords and lower the confidence.
+    ![](./elements/purview_sit_relax_proximity_duplicate_pattern.png)
+
 3. Connect to the Compliance PowerShell.
     ``` Powershell
     Connect-IPPSession
